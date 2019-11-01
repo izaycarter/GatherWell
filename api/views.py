@@ -2,8 +2,36 @@ from rest_framework import generics, permissions, viewsets
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+# from .serializers import ProfileSerializer
+from .serializers import ChurchSerializer
+# from accounts.models import Profile
+from churches.models import Church
+from .permissions import IsOwnerOrReadOnly
 
-# Create your views here.
+# to create a new church or list out all churches in the database
+class ChurchListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Church.objects.all()
+    serializer_class = ChurchSerializer
+
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+# list churches that are associated with the logged in user (owner field on the church model)
+class UserChurchListAPIView(generics.ListAPIView):
+    queryset = Church.objects.all()
+    serializer_class = ChurchSerializer
+    permission_classes = (IsOwnerOrReadOnly,)
+
+    def get_queryset(self):
+        return Church.objects.filter(owner=self.request.user.id)
+
+
+class ChurchRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Church.objects.all()
+    serializer_class = ChurchSerializer
+    permission_classes = (IsOwnerOrReadOnly,)
+
 class CustomAuthToken(ObtainAuthToken):
 
     def post(self, request, *args, **kwargs):

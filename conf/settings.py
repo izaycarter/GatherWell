@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     #local
     "api.apps.ApiConfig",
     "accounts.apps.AccountsConfig",
+    "churches.apps.ChurchesConfig",
     "frontend.apps.FrontendConfig",
 ]
 

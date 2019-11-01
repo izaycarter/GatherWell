@@ -5,12 +5,27 @@ import Map from "./Map";
 import Row from 'react-bootstrap/Row';
 
 class Parent extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            isViewingDetails: false,
+        }
+    }
 
     render(){
+        let viewing = this.isViewingDetails;
         return(
-            <Row>
-            <Map/>
-            <ChurchDetail className="col-sm-12 col-md-6" />
+            <Row className="justify-content-center">
+                {viewing ? (
+                    <div>
+                        <Map/>
+                        <ChurchDetail className="col-sm-12 col-md-6"/>
+                    </div>
+                ) : (
+                    <div>
+                        <Map/>
+                    </div>
+                )}
             </Row>
         )
 

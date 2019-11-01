@@ -5,7 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
 import Parent from "./components/Parent";
 import SignUp from "./containers/SignUp";
+import Profile from "./components/Profile";
+import CreateProfile from "./containers/CreateProfile";
 import BaseLayout from "./components/BaseLayout";
+import PrivateRoute from "./components/PrivateRoute";
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
@@ -13,6 +16,8 @@ ReactDOM.render(
     <Router>
         <BaseLayout>
             <Switch>
+                <PrivateRoute path="/profile/create/" component={CreateProfile}/>
+                <PrivateRoute path="/profile/" component={Profile}/>
                 <Route path="/signup/" component={SignUp}/>
                 <Route path='/login/' component={Login}/>
                 <Route exact path="/" component={Parent}/>
