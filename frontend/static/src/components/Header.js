@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Row from 'react-bootstrap/Row';
 import {Redirect ,Link} from "react-router-dom";
 import axios from "axios";
+import "../CSS/Header.css"
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
@@ -11,9 +12,7 @@ axios.defaults.headers.common["Authorization"] = localStorage.getItem("my-app-us
 // let isAuthenticated = localStorage.getItem("my-app-user") !== null ? true: false;
 class Header extends Component{
 
-    state = {
-        navigate: false
-    };
+
 
     logOut = () => {
         axios.post("/api/v1/rest-auth/logout/")
@@ -25,21 +24,17 @@ class Header extends Component{
     }
 
     render(){
-        const { navigate } = this.state;
 
-        if(navigate){
-            return <Redirect to="/" push={true} />;
-        }
         return (
-            <Row className="justify-content-center">
-                <h1 className="d-flex col-sm-12 col-md justify-content-center">Gathering Well</h1>
-                <nav className="row align-items-end">
+            <Row className="justify-content-center header">
+                <h1 className="title d-flex col-sm-12 col-md-6 justify-content-center">Gathering Well</h1>
+                <nav className="row align-items-center">
                     <ul className="row no-gutters navlinks justify-content-center">
-                        <li className="d-flex justify-content-center col-sm-12 col-md-auto pr-0 pl-0"><Link to="/">| Home |</Link></li>
-                        <li className="d-flex justify-content-center col-sm-12 col-md-auto pr-0 pl-0"><Link to="/login/">| Church Login |</Link></li>
-                        <li className="d-flex justify-content-center col-sm-12 col-md-auto pr-0 pl-0"><Link to="/profile/">| Profile |</Link></li>
-                        <li className="d-flex justify-content-center col-sm-12 col-md-auto pr-0 pl-0"><Link to="/profile/create/">| Submit church profile |</Link></li>
-                        <li className="d-flex justify-content-center col-sm-12 col-md-auto pr-0 pl-0"><button onClick={this.logOut} href="/">Log Out</button></li>
+                        <li className="navlink d-flex justify-content-center col-md-auto pr-0 pl-0"><Link className="navlink" to="/">| Home |</Link></li>
+                        <li className="navlink d-flex justify-content-center col-md-auto pr-0 pl-0"><Link className="navlink" to="/login/">| Church Login |</Link></li>
+                        <li className="navlink d-flex justify-content-center col-md-auto pr-0 pl-0"><Link className="navlink" to="/profile/">| Profile |</Link></li>
+                        <li className="navlink d-flex justify-content-center col-md-auto pr-0 pl-0"><Link className="navlink" to="/profile/create/">| Submit church profile |</Link></li>
+                        <li className="d-flex justify-content-center col-md-auto pr-0 pl-0"><Link className="navlink" onClick={this.logOut} to="/" >Log Out</Link></li>
                     </ul>
                 </nav>
 

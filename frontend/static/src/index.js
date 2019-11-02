@@ -23,6 +23,7 @@ ReactDOM.render(
                 <Route exact path="/" component={Parent}/>
             </Switch>
         </BaseLayout>
+        <link href="https://fonts.googleapis.com/css?family=Sirin+Stencil&display=swap" rel="stylesheet"/>
     </Router>
 , document.getElementById("root"));
 

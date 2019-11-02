@@ -1,5 +1,6 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
+import "../CSS/Base.css";
+
 
 
 import Header from "./Header";
@@ -8,11 +9,11 @@ import Footer from "./Footer";
 function BaseLayout(props) {
 
   return (
-    <Container>
+    <main className="container-fluid body">
         <Header />
         {props.children}
         <Footer />
-    </Container>
+    </main>
   );
 }
 

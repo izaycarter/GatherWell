@@ -12,6 +12,7 @@ from .permissions import IsOwnerOrReadOnly
 class ChurchListCreateAPIView(generics.ListCreateAPIView):
     queryset = Church.objects.all()
     serializer_class = ChurchSerializer
+    permission_classes = (IsOwnerOrReadOnly,)
 
 
     def perform_create(self, serializer):
