@@ -2,12 +2,9 @@ import React from 'react';
 import {Redirect , Route} from "react-router-dom";
 
 
-let isAuthenticated = localStorage.getItem("my-app-user") !== null ? true: false;
-
-
 const PrivateRoute = ({component: Component, ...rest }) => (
     <Route {...rest} render={props => (
-        isAuthenticated ? (
+        localStorage.getItem("my-app-user") !== null ? (
             <Component {...props}/>
         ) : (
             <Redirect to={{

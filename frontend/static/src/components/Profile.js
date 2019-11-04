@@ -5,7 +5,6 @@ import Geocode from "react-geocode";
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
-axios.defaults.headers.common["Authorization"] = localStorage.getItem("my-app-user") ? `Token ${JSON.parse(localStorage.getItem("my-app-user")).token} ` : null;
 
 Geocode.setApiKey("AIzaSyD0Xm6jvI-eFVF8O9EYDFl3pjIIfF_TGyk");
 Geocode.setLanguage("en");
@@ -39,7 +38,7 @@ class Profile extends Component{
 
 
     componentDidMount(){
-        axios.get("/api/v1/user/churches/")
+        axios.get("/api/v1/user/churches/", {headers: {'Authorization': `Token ${JSON.parse(localStorage.getItem("my-app-user")).token}`}})
         .then(res =>{
             this.setState({church_list: res.data});
 
@@ -159,6 +158,7 @@ class Profile extends Component{
     }
 
     render(){
+        console.log('profile is rendering');
         const isEditing = this.state.isEditing;
 
         let church_list = this.state.church_list.map(church => (

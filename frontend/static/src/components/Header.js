@@ -6,7 +6,6 @@ import "../CSS/Header.css"
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
-axios.defaults.headers.common["Authorization"] = localStorage.getItem("my-app-user") ? `Token ${JSON.parse(localStorage.getItem("my-app-user")).token} ` : null;
 
 
 // let isAuthenticated = localStorage.getItem("my-app-user") !== null ? true: false;
@@ -15,11 +14,13 @@ class Header extends Component{
 
 
     logOut = () => {
-        axios.post("/api/v1/rest-auth/logout/")
-        .then( localStorage.clear("Token"),
-        this.setState({navigate: true})).catch(error => {
-        console.log(error);
-    });
+        axios.post("/api/v1/rest-auth/logout/", {headers: {'Authorization': `Token ${JSON.parse(localStorage.getItem("my-app-user")).token}`}})
+        .then(res => {
+            localStorage.removeItem("my-app-user")
+        })
+        .catch(error => {
+            console.log(error);
+        });
 
     }
 

@@ -1,18 +1,35 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {Button,  Modal } from "react-bootstrap";
+import "../CSS/ChurchDetail.css"
 
-class ChurchDetail extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title>
+          <img className="church-picture" src={props.selectedChurch.image} atl={props.selectedChurch.name} />
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <h3>{props.selectedChurch.name}</h3>
+        <div>Denomination: {props.selectedChurch.denomination}</div>
+        <div>Worship Style: {props.selectedChurch.worship_type}</div>
+        <p>
+         {props.selectedChurch.description}
+        </p>
 
-        }
-    }
-
-        render(){
-            return(
-                <div className="d-line col-sm-12 col-md-3">Church stuff</div>
-            )
-        }
+        <a href={props.selectedChurch.website} target="_blank">{props.selectedChurch.website}</a>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
 }
 
-export default ChurchDetail;
+export default MyVerticallyCenteredModal;
