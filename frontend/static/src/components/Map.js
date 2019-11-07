@@ -123,7 +123,7 @@ export default class Map extends Component{
                     selectedMarker={this.state.selectedMarker}
                     churches={this.state.filteredChurches}
                     onClick={this.handleClick}
-                    googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyD0Xm6jvI-eFVF8O9EYDFl3pjIIfF_TGyk`}
+                    googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAKZLnacDUiXUywlSoY80Tebzn_ouWwxdc`}
                     loadingElement={<div style={{height: "100% "}} />}
                     containerElement={<div style={{height: "100% "}} />}
                     mapElement ={<div style={{height: "100% "}} />}

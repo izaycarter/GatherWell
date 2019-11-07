@@ -7,7 +7,7 @@ axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 // axios.defaults.headers.common["Authorization"] = localStorage.getItem("my-app-user") ? `Token ${JSON.parse(localStorage.getItem("my-app-user")).token} ` : null;
 
-Geocode.setApiKey("AIzaSyD0Xm6jvI-eFVF8O9EYDFl3pjIIfF_TGyk");
+Geocode.setApiKey("AIzaSyAKZLnacDUiXUywlSoY80Tebzn_ouWwxdc");
 Geocode.setLanguage("en");
 
 class CreateProfile extends Component {
