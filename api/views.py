@@ -2,10 +2,10 @@ from rest_framework import generics, permissions, viewsets
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-# from .serializers import ProfileSerializer
 from .serializers import ChurchSerializer
-# from accounts.models import Profile
-from churches.models import Church
+from .serializers import EventSerializer
+from churches.models import Church, Event
+from accounts.models import Subscriber
 from .permissions import IsOwnerOrReadOnly
 
 # to create a new church or list out all churches in the database
@@ -32,6 +32,13 @@ class ChurchRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Church.objects.all()
     serializer_class = ChurchSerializer
     permission_classes = (IsOwnerOrReadOnly,)
+
+
+class ChurchEventListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = (IsOwnerOrReadOnly,)
+
 
 class CustomAuthToken(ObtainAuthToken):
 

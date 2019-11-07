@@ -1,5 +1,5 @@
 from django.db import models
-from accounts.models import User
+from accounts.models import User,Subscriber
 
 class Church(models.Model):
 
@@ -42,3 +42,13 @@ class Church(models.Model):
     address = models.CharField(max_length=350)
     lat = models.FloatField()
     lng = models.FloatField()
+    subscribers = models.ManyToManyField(Subscriber, blank=True, related_name="subscribers" )
+
+
+
+class Event(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(max_length=800)
+    address = models.CharField(max_length=350)
+    date = models.DateField()
+    church = models.ForeignKey(Church, null=True, on_delete=models.CASCADE)

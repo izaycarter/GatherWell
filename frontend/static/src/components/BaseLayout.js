@@ -4,7 +4,7 @@ import "../CSS/Base.css";
 
 
 import Header from "./Header";
-import Footer from "./Footer";
+
 
 function BaseLayout(props) {
 
@@ -12,7 +12,6 @@ function BaseLayout(props) {
     <main className="container-fluid body">
         <Header />
         {props.children}
-        <Footer />
     </main>
   );
 }

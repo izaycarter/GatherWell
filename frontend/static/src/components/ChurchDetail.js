@@ -1,8 +1,16 @@
 import React from 'react';
 import {Button,  Modal } from "react-bootstrap";
-import "../CSS/ChurchDetail.css"
+import "../CSS/ChurchDetail.css";
 
-function MyVerticallyCenteredModal(props) {
+function ChurchDetail(props) {
+    let thisChurch = props.events.filter(events => events.church === props.selectedChurch.id);
+    let churchEvent = thisChurch.map(thisEvent =>(
+        <li key={thisEvent.id}>
+            <p>{thisEvent.title}</p>
+            <p>{thisEvent.description}</p>
+            <p>{thisEvent.address}</p>
+        </li>
+    ))
   return (
     <Modal
       {...props}
@@ -16,6 +24,7 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
+
         <h3>{props.selectedChurch.name}</h3>
         <div>Denomination: {props.selectedChurch.denomination}</div>
         <div>Worship Style: {props.selectedChurch.worship_type}</div>
@@ -24,6 +33,10 @@ function MyVerticallyCenteredModal(props) {
         </p>
 
         <a href={props.selectedChurch.website} target="_blank">{props.selectedChurch.website}</a>
+        <ul>
+            {churchEvent}
+        </ul>
+
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
@@ -32,4 +45,4 @@ function MyVerticallyCenteredModal(props) {
   );
 }
 
-export default MyVerticallyCenteredModal;
+export default ChurchDetail;

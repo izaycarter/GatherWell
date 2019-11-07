@@ -5,7 +5,7 @@ import Geocode from "react-geocode";
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
-axios.defaults.headers.common["Authorization"] = localStorage.getItem("my-app-user") ? `Token ${JSON.parse(localStorage.getItem("my-app-user")).token} ` : null;
+// axios.defaults.headers.common["Authorization"] = localStorage.getItem("my-app-user") ? `Token ${JSON.parse(localStorage.getItem("my-app-user")).token} ` : null;
 
 Geocode.setApiKey("AIzaSyD0Xm6jvI-eFVF8O9EYDFl3pjIIfF_TGyk");
 Geocode.setLanguage("en");
@@ -82,7 +82,8 @@ class CreateProfile extends Component {
 
             axios.post("/api/v1/churches/", formData, {
                 headers: {
-                    "content-type": "multipart/form-data"
+                    "content-type": "multipart/form-data",
+                    'Authorization': `Token ${JSON.parse(localStorage.getItem("my-app-user")).token}`
                 }
             })
             .then(res => {

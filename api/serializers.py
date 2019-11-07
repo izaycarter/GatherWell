@@ -1,13 +1,13 @@
 from rest_framework import serializers
 
 # from accounts.models import Profile
-from churches.models import Church
+from churches.models import Church, Event
 
-# class ProfileSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Profile
-#         fields = '__all__'
-        # fields = ("id", "name", "owner", "description", "is_verified", "denomination", "website", "worship_type", "image")
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ("id","title","description","address","date", "church")
+
 
 
 class ChurchSerializer(serializers.ModelSerializer):
