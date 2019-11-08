@@ -90,25 +90,51 @@ export default class Map extends Component{
     handleChange = (e) => {
         let key = e.target.name;
         let value = e.target.value;
-
         let churches = [...this.state.churches];
+        let filter
 
-        console.log({[key]:value})
-        // filter this.state.churches
-        let filteredChurches = churches.filter(church => {
-            if (value === 'Any') {
-                return true
-            } else {
-                return church[key] === value;
+
+
+        let runfilter = (filter) => {
+
+            if(this.state.worship_type !== 'Any'){
+
+                if(this.state.denomination !== 'Any') {
+                    filter = churches.filter(church => {
+                        return church["worship_type"] === this.state.worship_type && church["denomination"] === this.state.denomination
+                    });
+
+                } else {
+                    filter = churches.filter(church => {
+                        return church["worship_type"] === this.state.worship_type
+                    })
+                }
+
+            } else if(this.state.denomination !== 'Any') {
+
+                    filter = churches.filter(church => {
+                        return church["denomination"] === this.state.denomination
+                    })
+
             }
-        });
+
+             else {
+                 filter = churches.filter(church => {
+                     return true
+                 })
+            }
+            this.setState({filteredChurches: filter})
+
+        }
+        this.setState({[key]:value},runfilter)
+
+
+
 
 
         // console.log('filtered', filteredChurches);
 
         // update this.state.filteredChurches based on filter results
-
-        this.setState({filteredChurches});
     }
 
 
@@ -123,7 +149,7 @@ export default class Map extends Component{
                     selectedMarker={this.state.selectedMarker}
                     churches={this.state.filteredChurches}
                     onClick={this.handleClick}
-                    googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyD0Xm6jvI-eFVF8O9EYDFl3pjIIfF_TGyk`}
+                    googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`}
                     loadingElement={<div style={{height: "100% "}} />}
                     containerElement={<div style={{height: "100% "}} />}
                     mapElement ={<div style={{height: "100% "}} />}

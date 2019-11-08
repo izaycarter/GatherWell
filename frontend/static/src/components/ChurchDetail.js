@@ -10,7 +10,7 @@ class ChurchDetail extends Component {
     constructor(props){
         super(props);
         this.state = {
-            phone_number:"+1"
+            phone_number:""
         }
         this.handleChange = this.handleChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -70,8 +70,8 @@ class ChurchDetail extends Component {
             <a href={this.props.selectedChurch.website} target="_blank">{this.props.selectedChurch.website}</a>
             <form onSubmit={this.onSubmit}>
                 <p>{`want to know about new upcoming events for ${this.props.selectedChurch.name}?`}</p>
-                <label for="phone_number">enter phone number
-                <input type="text" name="phone_number" value={this.state.phone_number} onChange={this.handleChange} maxLength="12" placeholder="ex. 8641234567"></input>
+                <label htmlFor="phone_number">enter phone number
+                <input type="text" name="phone_number" value={this.state.phone_number} onChange={this.handleChange} maxLength="10" placeholder="ex. 8641234567"></input>
                 <button>Follow!</button>
                 </label>
             </form>

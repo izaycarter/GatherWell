@@ -59,7 +59,9 @@ class ChurchEventListCreateAPIView(generics.ListCreateAPIView):
             church = church,
         )
         subscribers = church.subscribers.all()
+
         event_date = event.date.strftime('%m/%d/%Y')
+
         for subscriber in church.subscribers.all():
             message = client.messages \
                     .create(
@@ -78,12 +80,12 @@ class ChurchEventListCreateAPIView(generics.ListCreateAPIView):
 
 # this is the view to add subscribers to a church
 class SubscriberCreateAPIView(views.APIView):
-
+    permission_classes = (AllowAny,)
     def post(self, request):
 
         # you need to either get or create the subscriber
-        subscriber, created = Subscriber.objects.get_or_create(phone_number = request.data['phone_number'],)
-
+        subscriber, created = Subscriber.objects.get_or_create(phone_number = "+1"+request.data['phone_number'],)
+        # import pdb; pdb.set_trace()
         # you need to get the church they want to subscribe to
         church = Church.objects.get(pk=request.data['selected_church_id'])
         # import pdb; pdb.set_trace()
