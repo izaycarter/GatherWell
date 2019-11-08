@@ -7,7 +7,7 @@ import EventForm from "./EventForm";
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
-Geocode.setApiKey("AIzaSyAKZLnacDUiXUywlSoY80Tebzn_ouWwxdc");
+Geocode.setApiKey("AIzaSyD0Xm6jvI-eFVF8O9EYDFl3pjIIfF_TGyk");
 Geocode.setLanguage("en");
 
 
@@ -97,13 +97,22 @@ class Profile extends Component{
         for (var key in newEvent) {
             formData.append(key, newEvent[key]);
         }
+
+        let messageSubscribers = () => {
+            // do stuff here
+        }
+
+
         axios.post("/api/v1/user/church/events/", formData ,{
             headers: {
                 'Authorization': `Token ${JSON.parse(localStorage.getItem("my-app-user")).token}`,
                 "content-type": "multipart/form-data"
             }
         }).then(res =>{
+            axios.post()
             this.setState((prevState)=>({addingEvent: !prevState.addingEvent}));
+            // messageSubscribers();
+
         }).catch(error => {
             console.log(error)
         });

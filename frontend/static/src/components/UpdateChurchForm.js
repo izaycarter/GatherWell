@@ -6,7 +6,7 @@ import Geocode from "react-geocode";
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
-Geocode.setApiKey("AIzaSyAKZLnacDUiXUywlSoY80Tebzn_ouWwxdc");
+Geocode.setApiKey("AIzaSyD0Xm6jvI-eFVF8O9EYDFl3pjIIfF_TGyk");
 Geocode.setLanguage("en");
 
 class UpdateChurchForm extends Component{

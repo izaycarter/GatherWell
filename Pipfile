@@ -17,6 +17,7 @@ django-storages = "*"
 boto3 = "*"
 django-rest-auth = "*"
 django-allauth = "*"
+twilio = "*"
 
 [requires]
 python_version = "3.7"

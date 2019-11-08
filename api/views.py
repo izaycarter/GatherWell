@@ -1,12 +1,18 @@
-from rest_framework import generics, permissions, viewsets
+from rest_framework import generics, permissions, viewsets, views
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from .serializers import ChurchSerializer
 from .serializers import EventSerializer
-from churches.models import Church, Event
-from accounts.models import Subscriber
+from .serializers import SubscriberSerializer
+from churches.models import Church, Event, Subscriber
 from .permissions import IsOwnerOrReadOnly
+from rest_framework.permissions import AllowAny
+from twilio.rest import Client
+from conf.settings import ACCOUNT_SID,AUTH_TOKEN
+
+# twillio number +12015844489
+
 
 # to create a new church or list out all churches in the database
 class ChurchListCreateAPIView(generics.ListCreateAPIView):
@@ -34,11 +40,59 @@ class ChurchRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsOwnerOrReadOnly,)
 
 
+
 class ChurchEventListCreateAPIView(generics.ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = (IsOwnerOrReadOnly,)
 
+    # override the deafalut perform_create method to message subscribers in addition
+    # to creating the event
+    def perform_create(self, request ):
+        client = Client(ACCOUNT_SID,AUTH_TOKEN)
+        church = Church.objects.get(pk=request.data['church'])
+        event , created = Event.objects.get_or_create(
+            title = request.data['title'],
+            description = request.data['description'],
+            address = request.data['address'],
+            date = request.data['date'],
+            church = church,
+        )
+        subscribers = church.subscribers.all()
+        event_date = event.date.strftime('%m/%d/%Y')
+        for subscriber in church.subscribers.all():
+            message = client.messages \
+                    .create(
+                         body= church.name +" Posted a new event titled :" + event.title + ". description of the event is: " + event.description + " and will be hosted at " + event.address + " on " + event_date ,
+                         from_='+12015844489',
+                         to= subscriber.phone_number
+                     )
+
+
+
+
+
+
+
+
+
+# this is the view to add subscribers to a church
+class SubscriberCreateAPIView(views.APIView):
+
+    def post(self, request):
+
+        # you need to either get or create the subscriber
+        subscriber, created = Subscriber.objects.get_or_create(phone_number = request.data['phone_number'],)
+
+        # you need to get the church they want to subscribe to
+        church = Church.objects.get(pk=request.data['selected_church_id'])
+        # import pdb; pdb.set_trace()
+        # you need to add the subscriber to the church subscribers list
+        church.subscribers.add(subscriber)
+
+        return Response()
+
+        # then you need to save the church
 
 class CustomAuthToken(ObtainAuthToken):
 

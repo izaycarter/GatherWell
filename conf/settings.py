@@ -181,6 +181,8 @@ AWS_DEFAULT_ACL = None
 # # default will be to lock down
 AWS_S3_FILE_OVERWRITE = False
 # true is defult and will overwrite file names. Set to FALSE for files to upload and add numbers to the end of file to add repeats.
+ACCOUNT_SID = os.environ["ACCOUNT_SID"]
+AUTH_TOKEN = os.environ["AUTH_TOKEN"]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # new
 

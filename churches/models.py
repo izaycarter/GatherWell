@@ -1,5 +1,5 @@
 from django.db import models
-from accounts.models import User,Subscriber
+from accounts.models import User
 
 class Church(models.Model):
 
@@ -42,7 +42,13 @@ class Church(models.Model):
     address = models.CharField(max_length=350)
     lat = models.FloatField()
     lng = models.FloatField()
-    subscribers = models.ManyToManyField(Subscriber, blank=True, related_name="subscribers" )
+    subscribers = models.ManyToManyField('Subscriber', blank=True, related_name="subscribers" )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "churches"
 
 
 
@@ -52,3 +58,10 @@ class Event(models.Model):
     address = models.CharField(max_length=350)
     date = models.DateField()
     church = models.ForeignKey(Church, null=True, on_delete=models.CASCADE)
+
+
+class Subscriber(models.Model):
+    phone_number = models.CharField(max_length=12)
+
+    def __str__(self):
+        return self.phone_number

@@ -1,48 +1,91 @@
-import React from 'react';
+import React , {Component} from 'react';
 import {Button,  Modal } from "react-bootstrap";
 import "../CSS/ChurchDetail.css";
+import axios from "axios";
 
-function ChurchDetail(props) {
-    let thisChurch = props.events.filter(events => events.church === props.selectedChurch.id);
-    let churchEvent = thisChurch.map(thisEvent =>(
-        <li key={thisEvent.id}>
-            <p>{thisEvent.title}</p>
-            <p>{thisEvent.description}</p>
-            <p>{thisEvent.address}</p>
-        </li>
-    ))
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title>
-          <img className="church-picture" src={props.selectedChurch.image} atl={props.selectedChurch.name} />
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
-        <h3>{props.selectedChurch.name}</h3>
-        <div>Denomination: {props.selectedChurch.denomination}</div>
-        <div>Worship Style: {props.selectedChurch.worship_type}</div>
-        <p>
-         {props.selectedChurch.description}
-        </p>
+class ChurchDetail extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            phone_number:"+1"
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
 
-        <a href={props.selectedChurch.website} target="_blank">{props.selectedChurch.website}</a>
-        <ul>
-            {churchEvent}
-        </ul>
+    handleChange(e){
+        let key = e.target.name;
+        let value = e.target.value;
+        this.setState({[key]: value});
+        console.log()
+    }
 
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
-  );
+    onSubmit(e){
+        e.preventDefault()
+
+        axios.post(`/api/v1/churches/subscribers/add/`, {phone_number: this.state.phone_number, selected_church_id:this.props.selectedChurch.id})
+        .then(res =>{
+            console.log(res)
+        })
+        .catch()
+
+    }
+
+    render(){
+        let thisChurch = this.props.events.filter(events => events.church === this.props.selectedChurch.id);
+
+        let churchEvent = thisChurch.map(thisEvent =>(
+            <li key={thisEvent.id}>
+                <p>{thisEvent.title}</p>
+                <p>{thisEvent.description}</p>
+                <p>{thisEvent.address}</p>
+            </li>
+        ));
+      return (
+        <Modal
+          {...this.props}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>
+              <img className="church-picture" src={this.props.selectedChurch.image} atl={this.props.selectedChurch.name} />
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+
+            <h3>{this.props.selectedChurch.name}</h3>
+
+            <a href={`https://www.google.com/maps/search/?api=1&query=${this.props.selectedChurch.lat},${this.props.selectedChurch.lng}`} target="_blank">{this.props.selectedChurch.address}</a>
+            <div>Denomination: {this.props.selectedChurch.denomination}</div>
+            <div>Worship Style: {this.props.selectedChurch.worship_type}</div>
+            <p>
+             {this.props.selectedChurch.description}
+            </p>
+
+            <a href={this.props.selectedChurch.website} target="_blank">{this.props.selectedChurch.website}</a>
+            <form onSubmit={this.onSubmit}>
+                <p>{`want to know about new upcoming events for ${this.props.selectedChurch.name}?`}</p>
+                <label for="phone_number">enter phone number
+                <input type="text" name="phone_number" value={this.state.phone_number} onChange={this.handleChange} maxLength="12" placeholder="ex. 8641234567"></input>
+                <button>Follow!</button>
+                </label>
+            </form>
+            <ul>
+                {churchEvent}
+            </ul>
+
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.props.onHide}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+      );
+    }
 }
 
 export default ChurchDetail;
