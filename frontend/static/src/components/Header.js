@@ -1,23 +1,26 @@
 import React, {Component} from 'react';
-import Row from 'react-bootstrap/Row';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "../CSS/Header.css"
+import "../Css/Header.css"
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
-
-let isAuthenticated = localStorage.getItem("my-app-user") !== null ? true: false;
-
 class Header extends Component{
-
-
+    constructor(props){
+        super(props);
+        this.state = {
+        }
+    }
 
     logOut = () => {
         axios.post("/api/v1/rest-auth/logout/", {headers: {'Authorization': `Token ${JSON.parse(localStorage.getItem("my-app-user")).token}`}})
         .then(res => {
             localStorage.removeItem("my-app-user")
+            this.isAuthenticated()
+
         })
         .catch(error => {
             console.log(error);
@@ -26,28 +29,32 @@ class Header extends Component{
     }
 
     render(){
+        let isAuthenticated = localStorage.getItem("my-app-user") !== null ? true: false;
 
         return (
-            <Row className="justify-content-center header">
-                <h1 className="title d-flex col-sm-12 col-md-6 justify-content-center">Gathering Well</h1>
-                <nav className="row align-items-center">
-                    {isAuthenticated ? (
-                        <ul className="row no-gutters navlinks justify-content-center">
-                            <li className="navlink d-flex justify-content-center col-md-auto pr-3 pl-0"><Link className="navlink" to="/"> Home </Link></li>
-                            <li className="navlink d-flex justify-content-center col-md-auto pr-3 pl-0"><Link className="navlink" to="/profile/"> Profile </Link></li>
-                            <li className="navlink d-flex justify-content-center col-md-auto pr-3 pl-0"><Link className="navlink" to="/profile/create/"> Submit church profile </Link></li>
-                            <li className="d-flex justify-content-center col-md-auto pr-0 pl-0"><Link className="navlink" onClick={this.logOut} to="/" > Log Out </Link></li>
-                        </ul>
-                    ): (<ul className="row no-gutters navlinks justify-content-center">
-                        <li className="navlink d-flex justify-content-center col-md-auto pr-3 pl-0"><Link className="navlink" to="/"> Home </Link></li>
-                        <li className="navlink d-flex justify-content-center col-md-auto pr-3 pl-0"><Link className="navlink" to="/login/"> Church Login </Link></li>
-                        <li className="navlink d-flex justify-content-center col-md-auto pr-3 pl-0"><Link className="navlink" to="/profile/"> Profile </Link></li>
-                        <li className="navlink d-flex justify-content-center col-md-auto pr-0 pl-0"><Link className="navlink" to="/profile/create/"> Submit church profile </Link></li>
-                    </ul>)}
+            <Navbar collapseOnSelect expand="lg" sticky="top">
+              <Navbar.Brand className="title" href="/">Gathering Well</Navbar.Brand>
+              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+              <Navbar.Collapse id="responsive-navbar-nav">
+                  { isAuthenticated ? (
+                        <Nav className="ml-auto">
+                          <Nav.Link className="navlink" href="/">Home</Nav.Link>
+                          <Nav.Link className="navlink" href="/profile/">Profile</Nav.Link>
+                          <Nav.Link className="navlink" href="/profile/create/">Submit Church</Nav.Link>
+                          <Nav.Link className="navlink" onClick={this.logOut} href="/">Log Out</Nav.Link>
+                        </Nav>
+                      ) : (
+                        <Nav className="ml-auto">
+                          <Nav.Link className="navlink" href="/">Home</Nav.Link>
+                          <Nav.Link className="navlink" href="/login/">Church Login</Nav.Link>
+                          <Nav.Link className="navlink" href="/profile/">Account</Nav.Link>
+                          <Nav.Link className="navlink" href="/profile/create/">Submit Church</Nav.Link>
+                        </Nav>
+                      )
+                    }
+              </Navbar.Collapse>
+            </Navbar>
 
-                </nav>
-
-            </Row>
         )
     }
 }

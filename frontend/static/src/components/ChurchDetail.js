@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
-import {Button,  Modal } from "react-bootstrap";
-import "../CSS/ChurchDetail.css";
+import {Button,  Modal , Card} from "react-bootstrap";
+import "../Css/ChurchDetail.css";
 import axios from "axios";
 
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -39,9 +39,11 @@ class ChurchDetail extends Component {
 
         let churchEvent = thisChurch.map(thisEvent =>(
             <li key={thisEvent.id}>
-                <p>{thisEvent.title}</p>
-                <p>{thisEvent.description}</p>
-                <p>{thisEvent.address}</p>
+                <Card bg="primary" text="white">
+                    <Card.Header>On {thisEvent.date} At {thisEvent.address}</Card.Header>
+                    <Card.Title>{thisEvent.title}</Card.Title>
+                    <Card.Body>{thisEvent.description}</Card.Body>
+                </Card>
             </li>
         ));
       return (
