@@ -32,6 +32,7 @@ class MapFilter extends Component{
                     <option value="LUTHERAN">Lutheran</option>
                     <option value="METHODIST">Methodist</option>
                     <option value="PENTECOSTAL">Pentecostal</option>
+                    <option value="PRESBYTERIAN">Presbyterian</option>
                     <option value="ASSYRIAN">Assyrian</option>
                     <option value="EASTERN ORTHODOX">Eastern Orthodox</option>
                     <option value="JEHOVAH'S WITNESS">Jehovah's Witness</option>

@@ -24,6 +24,7 @@ class Church(models.Model):
         ("LUTHERAN", "Lutheran"),
         ("METHODIST", "Methodist"),
         ("PENTECOSTAL", "Pentecostal"),
+        ("PRESBYTERIAN","Presbyterian"),
         ("ASSYRIAN", "Assyrian"),
         ("EASTERN ORTHODOX", "Eastern Orthodox"),
         ("ORIENTAL ORTHODOX", "Oriental Orthodox"),

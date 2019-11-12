@@ -7,7 +7,7 @@ axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 // axios.defaults.headers.common["Authorization"] = localStorage.getItem("my-app-user") ? `Token ${JSON.parse(localStorage.getItem("my-app-user")).token} ` : null;
 
-Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_GEOCODE_KEY);
 Geocode.setLanguage("en");
 
 class CreateProfile extends Component {
@@ -36,8 +36,10 @@ class CreateProfile extends Component {
 
     handleChange(e){
         let key = e.target.name;
-        const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+        const value = e.target.value;
         this.setState({[key]: value});
+
+
     }
 
     handleImageChange(e){
@@ -122,12 +124,6 @@ class CreateProfile extends Component {
 
 
     render(){
-        // let recipes = this.state.recipes.map(recipe => (
-        //     <li key={recipe.id}>
-        //         <p>{recipe.title}</p>
-        //         <img src={recipe.image} alt=""/>
-        //     </li>
-        // ))
         return(
             <React.Fragment>
                 <Form onSubmit={this.handleSubmit}>
@@ -145,7 +141,8 @@ class CreateProfile extends Component {
 
                     <Form.Group>
                         <Form.Label>Denomination Type</Form.Label>
-                        <Form.Control as="select" name="denomination" onChange={this.handleChange}>
+                        <Form.Control as="select" name="denomination" defaultValue="" onChange={this.handleChange}>
+                            <option value="" disabled>Select denomination</option>
                             <option value="NON DENOMINATIONAL">Non Denominational</option>
                             <option value="CATHOLIC">Catholic</option>
                             <option value="ADVENTIST">Adventist</option>
@@ -158,6 +155,7 @@ class CreateProfile extends Component {
                             <option value="LUTHERAN">Lutheran</option>
                             <option value="METHODIST">Methodist</option>
                             <option value="PENTECOSTAL">Pentecostal</option>
+                            <option value="PRESBYTERIAN">Presbyterian</option>
                             <option value="ASSYRIAN">Assyrian</option>
                             <option value="EASTERN ORTHODOX">Eastern Orthodox</option>
                             <option value="JEHOVAH'S WITNESS">Jehovah's Witness</option>
@@ -167,8 +165,9 @@ class CreateProfile extends Component {
 
                     <Form.Group>
                         <Form.Label>Worship Type</Form.Label>
-                        <Form.Control as="select" name="worship_type" onChange={this.handleChange}>
-                            <option value="NON LITURGICAL">Liturgical</option>
+                        <Form.Control as="select" name="worship_type" defaultValue="" onChange={this.handleChange}>
+                            <option value="" disabled>Select style of worship</option>
+                            <option value="LITURGICAL">Liturgical</option>
                             <option value="TRADITIONAL">Traditional</option>
                             <option value="BLENDED">Blended</option>
                             <option value="CONTEMPORARY">Contemporary</option>

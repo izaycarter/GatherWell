@@ -6,7 +6,7 @@ import Geocode from "react-geocode";
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
-Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_GEOCODE_KEY);
 Geocode.setLanguage("en");
 
 class UpdateChurchForm extends Component{
@@ -81,6 +81,7 @@ class UpdateChurchForm extends Component{
                         <option value="LUTHERAN">Lutheran</option>
                         <option value="METHODIST">Methodist</option>
                         <option value="PENTECOSTAL">Pentecostal</option>
+                        <option value="PRESBYTERIAN">Presbyterian</option>
                         <option value="ASSYRIAN">Assyrian</option>
                         <option value="EASTERN ORTHODOX">Eastern Orthodox</option>
                         <option value="JEHOVAH'S WITNESS">Jehovah's Witness</option>
@@ -92,7 +93,7 @@ class UpdateChurchForm extends Component{
                     <Form.Label>Worship Type</Form.Label>
                     <Form.Control as="select" defaultValue={this.state.worship_type}  name="worship_type" onChange={this.handleChange}>
                         <option value=""  disabled>Please Choose selcetion:</option>
-                        <option value="NON LITURGICAL">Liturgical</option>
+                        <option value="LITURGICAL">Liturgical</option>
                         <option value="TRADITIONAL">Traditional</option>
                         <option value="BLENDED">Blended</option>
                         <option value="CONTEMPORARY">Contemporary</option>

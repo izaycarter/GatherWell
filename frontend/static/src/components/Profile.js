@@ -8,7 +8,7 @@ import UpdateEventForm from "./UpdateEventForm";
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
-Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_GEOCODE_KEY);
 Geocode.setLanguage("en");
 
 
