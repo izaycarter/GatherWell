@@ -33,6 +33,7 @@ class Profile extends Component{
         this.editEvent = this.editEvent.bind(this);
         this.submitEvent = this.submitEvent.bind(this);
         this.updateEventSubmit = this.updateEventSubmit.bind(this);
+        this.deleteEvent = this.deleteEvent.bind(this);
     }
 
 
@@ -76,7 +77,6 @@ class Profile extends Component{
         reader.readAsDataURL(file);
 
     }
-
 
 
 
@@ -220,14 +220,27 @@ class Profile extends Component{
 
     }
 
+    deleteEvent(churchEvent){
+        axios.delete(`/api/v1/user/church/events/r-u-d/${churchEvent.id}/`, {headers: {'Authorization': `Token ${JSON.parse(localStorage.getItem("my-app-user")).token}`}})
+        .then(res =>{
+            let events = [...this.state.events];
+            let index = events.indexOf(res.data);
+            events.splice(index, 1);
+            this.setState({events});
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
 
     render(){
         let events = this.state.events.map( churchEvent =>(
             <div key={churchEvent.id}>
-                <p>
-                    {churchEvent.title}
-                    <button onClick={() => this.editEvent(churchEvent)}>Edit</button>
-                </p>
+                <span>{churchEvent.title}</span>
+                <button onClick={() => this.editEvent(churchEvent)}>Edit</button>
+                <button onClick={() => this.deleteEvent(churchEvent)}>Delete</button>
+
 
             </div>
         ));
@@ -245,7 +258,7 @@ class Profile extends Component{
                     </div>
                     <section>
                         <div>
-                        <h3>Events</h3>
+                        <span>Events: </span>
                         <button onClick={() => this.addingEvent(church)}>Add Event</button>
                         </div>
 
