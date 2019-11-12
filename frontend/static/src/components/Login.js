@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Card, Row} from 'react-bootstrap';
-import "../Css/Login.css"
+import {Card} from 'react-bootstrap';
+import "../Css/Login.css";
+import "../Css/Base.css";
 import axios from "axios";
 
 axios.defaults.xsrfCookieName = 'csrftoken';
@@ -39,8 +40,8 @@ class Login extends Component {
 
   render() {
     return  (
-            <section className="col">
-                <Card bg="primary" text="white">
+            <section className="expand align-content-center">
+                <Card  bg="primary" text="white">
                     <Card.Header>Login</Card.Header>
                     <Card.Body>
                       <form onSubmit={this.handleSubmit}>

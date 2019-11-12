@@ -6,12 +6,16 @@ from .serializers import ChurchSerializer
 from .serializers import EventSerializer
 from .serializers import SubscriberSerializer
 from churches.models import Church, Event, Subscriber
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnly, IsAdminUser, IsEventOwner
 from rest_framework.permissions import AllowAny
 from twilio.rest import Client
 from conf.settings import ACCOUNT_SID,AUTH_TOKEN
 
-# twillio number +12015844489
+
+class AdminVerifyUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Church.objects.all()
+    permission_classes = (IsAdminUser,)
+    serializer_class = ChurchSerializer
 
 
 # to create a new church or list out all churches in the database
@@ -40,14 +44,18 @@ class ChurchRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsOwnerOrReadOnly,)
 
 
+class UserEventRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = (IsEventOwner,)
+
+
 
 class ChurchEventListCreateAPIView(generics.ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = (IsOwnerOrReadOnly,)
 
-    # override the deafalut perform_create method to message subscribers in addition
-    # to creating the event
     def perform_create(self, request ):
         client = Client(ACCOUNT_SID,AUTH_TOKEN)
         church = Church.objects.get(pk=request.data['church'])

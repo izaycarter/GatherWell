@@ -3,6 +3,7 @@ import axios from "axios";
 import Geocode from "react-geocode";
 import UpdateChurchForm from "./UpdateChurchForm";
 import EventForm from "./EventForm";
+import UpdateEventForm from "./UpdateEventForm";
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
@@ -15,10 +16,13 @@ class Profile extends Component{
     constructor(props){
         super(props);
         this.state={
-            isEditing: false,
-            addingEvent: false,
+            editingChurch: false,
             church_list:[],
             church: {},
+            addingEvent: false,
+            editingEvent: false,
+            events:[],
+            eventEdting:{}
         }
         this.deleteChurch = this.deleteChurch.bind(this);
         this.editChurch = this.editChurch.bind(this);
@@ -26,7 +30,9 @@ class Profile extends Component{
         this.handleImageChange = this.handleImageChange.bind(this);
 
         this.addingEvent = this.addingEvent.bind(this);
+        this.editEvent = this.editEvent.bind(this);
         this.submitEvent = this.submitEvent.bind(this);
+        this.updateEventSubmit = this.updateEventSubmit.bind(this);
     }
 
 
@@ -35,6 +41,14 @@ class Profile extends Component{
         axios.get("/api/v1/user/churches/", {headers: {'Authorization': `Token ${JSON.parse(localStorage.getItem("my-app-user")).token}`}})
         .then(res =>{
             this.setState({church_list: res.data});
+
+        })
+        .catch(error => {
+            console.log(error);
+        });
+        axios.get("/api/v1/user/church/events/")
+        .then(res =>{
+            this.setState({events: res.data});
 
         })
         .catch(error => {
@@ -80,45 +94,8 @@ class Profile extends Component{
     }
 
     editChurch(church){
-        this.setState((prevState)=>({isEditing: !prevState.isEditing , church:church ,name:church.name,description:church.description,denomination:church.denomination,website:church.website,worship_type:church.worship_type,address:church.address,lat:church.lat, lng:church.lng })
+        this.setState((prevState)=>({editingChurch: !prevState.editingChurch , church:church ,name:church.name,description:church.description,denomination:church.denomination,website:church.website,worship_type:church.worship_type,address:church.address,lat:church.lat, lng:church.lng })
          )
-    }
-
-    addingEvent(church){
-        this.setState((prevState)=>({addingEvent: !prevState.addingEvent ,church}))
-
-        // you have all the event details passed up from the EventForm
-        // you have access to the church object in this component
-        // take the information that is passed up and connect with the church id
-    }
-
-    submitEvent(newEvent){
-        let formData = new FormData();
-        for (var key in newEvent) {
-            formData.append(key, newEvent[key]);
-        }
-
-        let messageSubscribers = () => {
-            // do stuff here
-        }
-
-
-        axios.post("/api/v1/user/church/events/", formData ,{
-            headers: {
-                'Authorization': `Token ${JSON.parse(localStorage.getItem("my-app-user")).token}`,
-                "content-type": "multipart/form-data"
-            }
-        }).then(res =>{
-            axios.post()
-            this.setState((prevState)=>({addingEvent: !prevState.addingEvent}));
-            // messageSubscribers();
-
-        }).catch(error => {
-            console.log(error)
-        });
-
-
-
     }
 
     updateSubmit(church){
@@ -151,7 +128,7 @@ class Profile extends Component{
                 church = Object.assign(church, res.data);
 
 
-                this.setState((prevState, props) => ({isEditing: !prevState.isEditing, church_list:church_list}));
+                this.setState((prevState, props) => ({editingChurch: !prevState.editingChurch, church_list:church_list}));
 
             })
             .catch(error => {
@@ -178,33 +155,120 @@ class Profile extends Component{
         this.setState({church}, geocode);
     }
 
+    addingEvent(church){
+        this.setState((prevState)=>({addingEvent: !prevState.addingEvent ,church}))
+
+        // you have all the event details passed up from the EventForm
+        // you have access to the church object in this component
+        // take the information that is passed up and connect with the church id
+    }
+
+    submitEvent(newEvent){
+        let formData = new FormData();
+        for (var key in newEvent) {
+            formData.append(key, newEvent[key]);
+        }
+
+
+
+        axios.post("/api/v1/user/church/events/", formData ,{
+            headers: {
+                'Authorization': `Token ${JSON.parse(localStorage.getItem("my-app-user")).token}`,
+                "content-type": "multipart/form-data"
+            }
+        }).then(res =>{
+            axios.post()
+            this.setState((prevState)=>({addingEvent: !prevState.addingEvent}));
+            // messageSubscribers();
+
+        }).catch(error => {
+            console.log(error)
+        });
+
+
+
+    }
+
+    editEvent(churchEvent){
+        this.setState((prevState)=>({editingEvent: !prevState.editingEvent ,eventEdting:churchEvent}))
+    }
+
+    updateEventSubmit(updatedEvent){
+        let formData = new FormData();
+        for (var key in updatedEvent) {
+            formData.append(key, updatedEvent[key]);
+        }
+
+        axios.patch(`/api/v1/user/church/events/r-u-d/${this.state.eventEdting.id}/`, formData ,{
+            headers: {
+                'Authorization': `Token ${JSON.parse(localStorage.getItem("my-app-user")).token}`,
+                "content-type": "multipart/form-data"
+            }
+        }).then(res =>{
+            let events = [...this.state.events]
+            let eventEdting = events.find(eventEdting => {
+                return eventEdting.id === res.data.id
+            });
+            eventEdting = Object.assign(eventEdting, res.data);
+
+
+            this.setState((prevState)=>({editingEvent: !prevState.editingEvent,eventEdting:{}, }));
+
+        }).catch(error => {
+            console.log(error)
+        });
+
+    }
+
 
     render(){
-        const isEditing = this.state.isEditing;
-        const addingEvent = this.state.addingEvent;
+        let events = this.state.events.map( churchEvent =>(
+            <div key={churchEvent.id}>
+                <p>
+                    {churchEvent.title}
+                    <button onClick={() => this.editEvent(churchEvent)}>Edit</button>
+                </p>
+
+            </div>
+        ));
 
         let churchList = this.state.church_list.map(church => (
                 <li key={church.id}>
-                <h2>{church.name}</h2>
-                <img src={church.image} alt="church profile" />
-                <p>{church.description}</p>
-                <p>{church.denomination}</p>
-                <p>{church.worship_type}</p>
-                <p>{church.website}</p>
-                <p>{church.address}</p>
+                    <div>
+                        <h2>{church.name}</h2>
+                        <img src={church.image} alt="church profile" />
+                        <p>{church.description}</p>
+                        <p>{church.denomination}</p>
+                        <p>{church.worship_type}</p>
+                        <p>{church.website}</p>
+                        <p>{church.address}</p>
+                    </div>
+                    <section>
+                        <div>
+                        <h3>Events</h3>
+                        <button onClick={() => this.addingEvent(church)}>Add Event</button>
+                        </div>
 
-                <button onClick={() => this.addingEvent(church)}>Add Event</button>
+                        {events}
+                    </section>
+
+
                 <button onClick={() => this.editChurch(church)}>Edit Church</button>
                 <button onClick={() => this.deleteChurch(church)}>Delete Church</button>
                 </li>
         ));
 
-        if(this.state.isEditing) {
+        console.log(this.state.events)
+
+        if(this.state.editingChurch) {
             return <UpdateChurchForm church={this.state.church} updateSubmit={this.updateSubmit}/>
         }
 
         if(this.state.addingEvent) {
-            return <EventForm church={this.state.church} submitEvent={this.submitEvent} />
+            return <EventForm addingEvent={this.state.addingEvent} church={this.state.church} submitEvent={this.submitEvent} />
+        }
+        if(this.state.editingEvent){
+            return <UpdateEventForm editEvent={this.state.editingEvent} eventEdting={this.state.eventEdting} updateEventSubmit={this.updateEventSubmit}  />
         }
         return(
             <ul>

@@ -1,5 +1,6 @@
 import React , {Component} from 'react';
 import "../Css/Base.css";
+// import Row from 'react-bootstrap/Row';
 
 
 
@@ -15,7 +16,6 @@ class BaseLayout extends Component{
 
 
     render(){
-        console.log(this.state.isAuthenticated)
       return (
         <main className="container-fluid body">
             <Header/>

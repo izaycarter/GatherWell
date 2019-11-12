@@ -1,4 +1,8 @@
 .body{
-    background-color:#ECEFDC;
+    background-color:#567A8E;
+    height: 100%;
+}
+
+.expand{
     height: 100vh;
 }

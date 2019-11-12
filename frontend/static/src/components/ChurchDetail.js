@@ -53,10 +53,10 @@ class ChurchDetail extends Component {
           aria-labelledby="contained-modal-title-vcenter"
           centered
         >
-          <Modal.Header closeButton>
-            <Modal.Title>
+          <Modal.Header className="row no-gutters justify-content-center" closeButton>
+            <div className="col d-flex justify-content-center ">
               <img className="church-picture" src={this.props.selectedChurch.image} atl={this.props.selectedChurch.name} />
-            </Modal.Title>
+            </div>
           </Modal.Header>
           <Modal.Body>
 

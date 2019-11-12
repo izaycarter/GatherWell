@@ -14,7 +14,7 @@ class MapFilter extends Component{
 
     render(){
       return (
-        <Row className="justify-content-center">
+        <Row className="justify-content-around">
             <div className="d-flex">
             <Form.Group className="">
                 <Form.Label>Denomination Type</Form.Label>
@@ -38,7 +38,8 @@ class MapFilter extends Component{
                     <option value="LATTER DAY SAINT">Latter Day Saint</option>
                 </Form.Control>
             </Form.Group>
-
+            </div>
+            <div className="d-flex">
             <Form.Group className="">
                 <Form.Label>Worship Type</Form.Label>
                 <Form.Control as="select" defaultValue="Any" name="worship_type" onChange={this.props.handleChange}>

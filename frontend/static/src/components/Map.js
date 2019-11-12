@@ -34,6 +34,7 @@ const MyMap = compose(withScriptjs, withGoogleMap) ( props =>{
                                     key={church.id}
                                     onClick={onClick}
                                     position={{ lat:church.lat, lng:church.lng }}
+                                    icon = {{url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"}}
                                 >
                                 </Marker>
                         )

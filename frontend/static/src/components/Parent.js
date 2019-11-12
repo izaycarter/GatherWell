@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 // import ChurchDetail from "./ChurchDetail";
 // import MapContainer from "./MapContainer";
 import Map from "./Map";
-// import Row from 'react-bootstrap/Row';
+import Row from 'react-bootstrap/Row';
 
 class Parent extends Component {
     constructor(props){
@@ -21,9 +21,9 @@ class Parent extends Component {
     render(){
 
         return(
-            <div>
+            <Row>
                 <Map className="col-sm-12" />
-            </div>
+            </Row>
         )
 
     }
