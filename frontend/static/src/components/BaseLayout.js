@@ -20,7 +20,6 @@ class BaseLayout extends Component{
         <main className="container-fluid body">
             <Header/>
             {this.props.children}
-
         </main>
       );
     }

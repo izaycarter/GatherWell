@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import axios from "axios";
-import "../Css/Base.css";
+import "../Css/CreateProfile.css";
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
@@ -42,23 +42,31 @@ class EventForm extends Component{
     render(){
 
         return(
-            <div className="expand row no-gutters align-items-center">
-                <Form className="col" onSubmit={this.submitEvent}>
-                    <label>Event Title:
-                    <input type="text" name="title" value={this.state.title} onChange={this.handleChange}/>
-                    </label>
+            <div className="d-flex create-profile-container">
+                <Form className="profile-form d-flex" onSubmit={this.submitEvent}>
+                    <h2 className="form-title d-flex justify-content-center">Create Event for {this.props.church.title}</h2>
 
-                    <label>Description
-                    <input type="text" name="description" value={this.state.description} onChange={this.handleChange}/>
-                    </label>
+                    <Form.Group className="d-flex" >
+                        <Form.Label className="Form-label">Event Title:</Form.Label>
+                        <Form.Control as="input" type="text" name="title" value={this.state.title} onChange={this.handleChange}/>
+                    </Form.Group>
 
-                    <label>Address for event:
-                    <input type="text" name="address" value={this.state.address} onChange={this.handleChange}/>
-                    </label>
+                    <Form.Group className="d-flex" >
+                        <Form.Label className="Form-label">Description:</Form.Label>
+                        <Form.Control as="textarea" type="text" name="description" value={this.state.description} onChange={this.handleChange}/>
+                    </Form.Group>
 
-                    <label>Date:
-                    <input type="date" name="date" value={this.state.date} onChange={this.handleChange}/>
-                    </label>
+                    <Form.Group className="d-flex" >
+                        <Form.Label className="Form-label">Address for event:</Form.Label>
+                        <Form.Control as="input" type="text" name="address" value={this.state.address} onChange={this.handleChange}/>
+                    </Form.Group>
+
+
+                    <Form.Group className="d-flex" >
+                        <Form.Label className="Form-label">Date:</Form.Label>
+                        <Form.Control as="input" type="date" name="date" value={this.state.date} onChange={this.handleChange}/>
+                    </Form.Group>
+            
                     <button>Create Event</button>
                 </Form>
             </div>

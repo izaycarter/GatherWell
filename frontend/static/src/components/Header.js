@@ -6,19 +6,27 @@ import "../Css/Header.css"
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
+let isAuthenticated = localStorage.getItem("my-app-user") !== null ? true: false;
+
 class Header extends Component{
     constructor(props){
         super(props);
         this.state = {
-
+            // isAuthenticated: false
         }
+
+
+    }
+
+    componentDidMount(){
+        // this.setState({isAuthenticated: localStorage.getItem("my-app-user") !== null ? true: false})
     }
 
     logOut = () => {
         axios.post("/api/v1/rest-auth/logout/", {headers: {'Authorization': `Token ${JSON.parse(localStorage.getItem("my-app-user")).token}`}})
         .then(res => {
             localStorage.removeItem("my-app-user")
-            this.isAuthenticated()
+            // this.isAuthenticated()
 
         })
         .catch(error => {
@@ -29,7 +37,7 @@ class Header extends Component{
 
 
     render(){
-        let isAuthenticated = localStorage.getItem("my-app-user") !== null ? true: false;
+        // let isAuthenticated = localStorage.getItem("my-app-user") !== null ? true: false;
 
         let isAdmin = () => {
             if(JSON.parse(localStorage.getItem("my-app-user")).username === "admin"){
@@ -56,7 +64,7 @@ class Header extends Component{
                           <Nav.Link className="" onClick={this.logOut} href="/">Log Out</Nav.Link>
                         </Nav>
                     ) : (
-                        <Nav className="ml-auto col-lg-8 col-xl-6  ">
+                        <Nav className="ml-auto col-lg-8 col-xl-7  ">
                           <Nav.Link className="" href="/">Home</Nav.Link>
                           <Nav.Link className="" href="/login/">Church Login</Nav.Link>
                           <Nav.Link className="" href="/profile/">Account</Nav.Link>

@@ -3,6 +3,7 @@ import {Card} from 'react-bootstrap';
 import "../Css/Login.css";
 import "../Css/Base.css";
 import axios from "axios";
+// import Header from "./Header";
 
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';

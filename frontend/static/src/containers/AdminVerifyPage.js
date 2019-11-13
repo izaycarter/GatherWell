@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Button, Card , Form} from "react-bootstrap";
+import {Button, Card , Form, ListGroup, ListGroupItem} from "react-bootstrap";
 import axios from "axios";
-import "../Css/Base.css";
+import "../Css/Profile.css";
 
 
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -98,41 +98,53 @@ class AdminVerifyPage extends Component{
         let verifyMode = !this.state.verifyMode;
         console.log(this.state.churches.length)
         let churchList = this.state.churches.map(church => (
-            <Card key={church.id} style={{ width: '18rem' }}>
-              <Card.Img variant="top" src={church.image} />
-              <Card.Body>
-                <Card.Title>{church.name}</Card.Title>
-                <Card.Text>{church.description}</Card.Text>
-                <Card.Text>{church.address}</Card.Text>
-                <a href={church.website}>{church.website}</a>
-                {verifyMode ? (
-                    <Button onClick={() => {this.verifyChurch(church)}}>Verify This Church</Button>
-                ) : (
-                    <Form onSubmit={this.submitVerifaction}>
-                        <Form.Group controlId="formBasicCheckbox">
-                            <Form.Check name="is_verified" type="checkbox" label="Verified" value={this.state.is_verified} onChange={this.onChange} />
-                        </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
-                )
-                }
-              </Card.Body>
-              <Card.Footer>
-                  <Button variant="danger" onClick={() => {this.deleteChurch(church)}}>Delete profile</Button>
-              </Card.Footer>
-            </Card>
+            <li className="d-flex justify-content-center profile-li" key={church.id} >
+                <div>
+                    <h2 className=" d-flex church-name justify-content-center">{church.name}</h2>
+                    <Card className="profile-card">
+                        <Card.Img variant="top" src={church.image} atl="church profile picture"/>
+                        <Card.Body>
+                            <Card.Text className="profile-description">
+                                {church.description}
+                            </Card.Text>
+                        </Card.Body>
+                        <ListGroup className="profile-list-details">
+                            <ListGroupItem><span className="profile_topic_section">Denomination:</span> {church.denomination}</ListGroupItem>
+                            <ListGroupItem><span className="profile_topic_section">Worship style: </span>{church.worship_type}</ListGroupItem>
+                            <ListGroupItem><span className="profile_topic_section">Address: </span>{church.address}</ListGroupItem>
+                            <ListGroupItem><span className="profile_topic_section">Website: </span><a href={church.website} target="_blank">{church.website}</a></ListGroupItem>
+                        </ListGroup>
+                        <Card.Body>
+                        {verifyMode ? (
+                            <Button onClick={() => {this.verifyChurch(church)}}>Verify This Church</Button>
+                        ) : (
+                            <Form onSubmit={this.submitVerifaction}>
+                                <Form.Group controlId="formBasicCheckbox">
+                                    <Form.Check name="is_verified" type="checkbox" label="Verified" value={this.state.is_verified} onChange={this.onChange} />
+                                </Form.Group>
+                                <Button variant="primary" type="submit">
+                                    Submit
+                                </Button>
+                            </Form>
+                        )
+                        }
+                      </Card.Body>
+                      <Card.Footer>
+                          <Button variant="danger" onClick={() => {this.deleteChurch(church)}}>Delete profile</Button>
+                      </Card.Footer>
+                    </Card>
+                </div>
+            </li>
         ))
 
 
         return(
-            <section className="expand">
+            <ul>
                 {this.state.churches.length !== 0 ? (
                     <h2>Pending Churches</h2>)
                     :(<h2>There are no Churches pendeing Verifaction</h2>)}
                 {churchList}
-            </section>
+            </ul>
         )
     }
 }

@@ -1,10 +1,9 @@
 .church-picture{
     width:400px;
-    height:300px;
 }
 
 .modal-content{
-    background-color: hsla(211, 13%, 16%, 0.89);
+    background-color: hsla(198, 100%, 6%, 0.69);
     color:#FFF;
     font-family: 'Sirin Stencil', cursive;
 }
@@ -32,6 +31,7 @@
 .want-to-subscribe-text{
     font-size: 20px;
     margin-bottom: .5rem;
+    border-top: 1px solid #dee2e6;
 }
 
 .events{

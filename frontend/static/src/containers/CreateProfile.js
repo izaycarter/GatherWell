@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from "axios";
 import Form from 'react-bootstrap/Form';
 import Geocode from "react-geocode";
+import "../Css/CreateProfile.css";
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
@@ -125,22 +126,26 @@ class CreateProfile extends Component {
 
     render(){
         return(
-            <React.Fragment>
-                <Form onSubmit={this.handleSubmit}>
-                    <label>Church name:
-                    <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
-                    </label>
+            <div className="d-flex create-profile-container">
+                <Form className="profile-form d-flex" onSubmit={this.handleSubmit}>
+                    <h2 className="form-title d-flex justify-content-center">Create a Church Profile</h2>
+                    <Form.Group className="d-flex" >
+                        <Form.Label className="Form-label">Church name:</Form.Label>
+                        <Form.Control as="input" type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
+                    </Form.Group>
 
-                    <label>Website Link:
-                    <input type="text" name="website" value={this.state.website} onChange={this.handleChange}/>
-                    </label>
+                    <Form.Group className="d-flex">
+                        <Form.Label className="Form-label">Website Link:</Form.Label>
+                        <Form.Control type="text" name="website" value={this.state.website} onChange={this.handleChange}/>
+                    </Form.Group>
 
-                    <label>Address:
-                    <input type="text" name="address" value={this.state.address} onChange={this.handleChange}/>
-                    </label>
+                    <Form.Group className="d-flex">
+                        <Form.Label className="Form-label">Address:</Form.Label>
+                        <Form.Control type="text" name="address" value={this.state.address} onChange={this.handleChange}/>
+                    </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Denomination Type</Form.Label>
+                        <Form.Label className="Form-label">Denomination Type:</Form.Label>
                         <Form.Control as="select" name="denomination" defaultValue="" onChange={this.handleChange}>
                             <option value="" disabled>Select denomination</option>
                             <option value="NON DENOMINATIONAL">Non Denominational</option>
@@ -164,7 +169,7 @@ class CreateProfile extends Component {
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Worship Type</Form.Label>
+                        <Form.Label className="Form-label">Worship Type:</Form.Label>
                         <Form.Control as="select" name="worship_type" defaultValue="" onChange={this.handleChange}>
                             <option value="" disabled>Select style of worship</option>
                             <option value="LITURGICAL">Liturgical</option>
@@ -175,24 +180,26 @@ class CreateProfile extends Component {
                         </Form.Control>
                     </Form.Group>
 
-                    <label>description
-                    <input type="text" name="description" value={this.state.description} onChange={this.handleChange}/>
-                    </label>
+                    <Form.Group className="d-flex">
+                        <Form.Label className="Form-label">Description:</Form.Label>
+                        <Form.Control as="textarea" rows="4" type="text" name="description" value={this.state.description} onChange={this.handleChange}/>
+                    </Form.Group>
 
-                    <label>Add Profile Picture
-                    <input type="file" name="image" onChange={this.handleImageChange}/>
-                    </label>
+                    <Form.Group className="d-flex">
+                        <Form.Label className="Form-label">Add Profile Picture</Form.Label>
+                        <Form.Control type="file" name="image" onChange={this.handleImageChange}/>
+                    </Form.Group>
 
 
                     {this.state.image ? (
-                        <img src={this.state.preview} alt="preview"/>
+                        <img className="preview-image" src={this.state.preview} alt="preview"/>
                     ) : (
                         null
                     )}
 
                     <button>Upload</button>
                 </Form>
-            </React.Fragment>
+            </div>
         )
     }
 }

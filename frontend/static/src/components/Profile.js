@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import Geocode from "react-geocode";
+import {Card, ListGroup , ListGroupItem} from "react-bootstrap";
+
 import UpdateChurchForm from "./UpdateChurchForm";
 import EventForm from "./EventForm";
 import UpdateEventForm from "./UpdateEventForm";
+import "../Css/Profile.css";
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
@@ -236,43 +239,48 @@ class Profile extends Component{
 
 
     render(){
-        let events = this.state.events.map( churchEvent =>(
-            <div key={churchEvent.id}>
-                <span>{churchEvent.title}</span>
-                <button onClick={() => this.editEvent(churchEvent)}>Edit</button>
-                <button onClick={() => this.deleteEvent(churchEvent)}>Delete</button>
+        let churchList = this.state.church_list.map(church => {
+            let events = this.state.events.filter(event => event.church === church.id).map( churchEvent => (
+                <ListGroupItem className="d-flex justify-content-between event-item" key={churchEvent.id}>
+                     {churchEvent.title}
 
+                     <button onClick={() => this.editEvent(churchEvent)}>Edit</button>
+                     <button onClick={() => this.deleteEvent(churchEvent)}>Delete</button>
 
-            </div>
-        ));
+                </ListGroupItem>
 
-        let churchList = this.state.church_list.map(church => (
-                <li key={church.id}>
-                    <div>
-                        <h2>{church.name}</h2>
-                        <img src={church.image} alt="church profile" />
-                        <p>{church.description}</p>
-                        <p>{church.denomination}</p>
-                        <p>{church.worship_type}</p>
-                        <p>{church.website}</p>
-                        <p>{church.address}</p>
+            ));
+                return (<li className="d-flex justify-content-center profile-li" key={church.id}>
+                    <div className>
+                        <h2 className=" d-flex church-name justify-content-center">{church.name}</h2>
+                    <Card className="profile-card">
+                      <Card.Img variant="top" src={church.image} atl="church profile picture" />
+                      <Card.Body>
+                        <Card.Text className="profile-description">
+                          {church.description}
+                        </Card.Text>
+                      </Card.Body>
+                      <ListGroup className="profile-list-details">
+                            <ListGroupItem><span className="profile_topic_section">Denomination:</span> {church.denomination}</ListGroupItem>
+                            <ListGroupItem><span className="profile_topic_section">Worship style: </span>{church.worship_type}</ListGroupItem>
+                            <ListGroupItem><span className="profile_topic_section">Address: </span>{church.address}</ListGroupItem>
+                            <ListGroupItem><span className="profile_topic_section">Website: </span><a href={church.website} target="_blank">{church.website}</a></ListGroupItem>
+                       </ListGroup>
+                       <Card.Body className="d-flex justify-content-between">
+                            <button onClick={() => this.addingEvent(church)}>Add Event</button>
+                            <button onClick={() => this.editChurch(church)}>Edit Church</button>
+                            <button onClick={() => this.deleteChurch(church)}>Delete Church</button>
+                        </Card.Body>
+                        <ListGroup className="profile-list-details">
+                            <ListGroupItem className="d-flex justify-content-center event-header">Events</ListGroupItem>
+                            {events}
+                        </ListGroup>
+                    </Card>
                     </div>
-                    <section>
-                        <div>
-                        <span>Events: </span>
-                        <button onClick={() => this.addingEvent(church)}>Add Event</button>
-                        </div>
+                </li>)
+        }
 
-                        {events}
-                    </section>
-
-
-                <button onClick={() => this.editChurch(church)}>Edit Church</button>
-                <button onClick={() => this.deleteChurch(church)}>Delete Church</button>
-                </li>
-        ));
-
-        console.log(this.state.events)
+        );
 
         if(this.state.editingChurch) {
             return <UpdateChurchForm church={this.state.church} updateSubmit={this.updateSubmit}/>
@@ -285,7 +293,8 @@ class Profile extends Component{
             return <UpdateEventForm editEvent={this.state.editingEvent} eventEdting={this.state.eventEdting} updateEventSubmit={this.updateEventSubmit}  />
         }
         return(
-            <ul>
+
+            <ul className="d-flex profile-list justify-content-center">
                 {churchList}
             </ul>
         )

@@ -1,0 +1,33 @@
+.create-profile-container{
+    margin-top: 3rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.profile-form{
+    flex-direction: column;
+    width: 90%;
+    padding: 2rem;
+    border: 1px solid #fff;
+    background-color: hsla(211, 23%, 15%, 0.9);
+}
+
+.form-title{
+    color:  #FFF;
+    font-family: 'Sirin Stencil', cursive;
+    border-bottom: 1px solid #FFF;
+}
+
+.Form-label{
+    color:  #FFF;
+    font-family: 'Sirin Stencil', cursive;
+}
+
+.form-group{
+    flex-direction: column;
+}
+
+.preview-image{
+    width:400px;
+    margin-bottom: 1rem;
+}

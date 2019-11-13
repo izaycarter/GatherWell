@@ -2,10 +2,21 @@
     width: 50vw;
     color: #FFF;
     font-family: 'Sirin Stencil', cursive;
-    margin-top: 2rem;
+    max-width: 1400px;
+    display: flex;
 
 }
 
 .filter-labels{
     font-size: 18px;
+}
+
+.filters{
+    flex-direction: column;
+}
+
+@media(max-width: 991px){
+    .filters-div{
+        flex-direction: column;
+    }
 }

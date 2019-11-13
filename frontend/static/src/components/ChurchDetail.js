@@ -84,7 +84,7 @@ class ChurchDetail extends Component {
                 </form>
             </div>
             <div>
-                <p className="event-list-title">Upcoming Events</p>
+                <p className="event-list-title">Upcoming Events:</p>
                 <ul className="d-flex justify-content-center">
                     {churchEvent}
                 </ul>
