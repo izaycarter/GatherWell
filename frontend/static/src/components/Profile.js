@@ -109,6 +109,7 @@ class Profile extends Component{
             }
             delete church.owner
             delete church.is_verified
+            delete church.subscribers
 
             for (var key in church) {
                 formData.append(key, church[key]);

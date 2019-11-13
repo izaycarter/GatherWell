@@ -33,37 +33,40 @@ class Header extends Component{
 
         let isAdmin = () => {
             if(JSON.parse(localStorage.getItem("my-app-user")).username === "admin"){
-                return <Nav.Link className="navlink" href="/admin/verify/">Pending Verification</Nav.Link>
+                return <Nav.Link className="" href="/admin/verify/">Pending Verification</Nav.Link>
             }
 
         }
 
 
         return (
-            <Row>
+            <Row className="header no-gutters">
+            <div className="navContainer">
+
+            <h1 className="title col-sm-12 col-md-5 col-lg-4"><a href="/">Gathering Well</a></h1>
             <Navbar className="col" collapseOnSelect expand="lg">
-              <Navbar.Brand className="title" href="/">Gathering Well</Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <Navbar.Collapse id="responsive-navbar-nav">
+              <Navbar.Collapse className="col" id="responsive-navbar-nav">
                   { isAuthenticated ? (
-                        <Nav className="ml-auto">
-                          <Nav.Link className="navlink" href="/">Home</Nav.Link>
+                        <Nav className="ml-auto col-lg-11 col-xl-9">
+                          <Nav.Link className="" href="/">Home</Nav.Link>
                           {isAdmin()}
-                          <Nav.Link className="navlink" href="/profile/">Profile</Nav.Link>
-                          <Nav.Link className="navlink" href="/profile/create/">Submit Church</Nav.Link>
-                          <Nav.Link className="navlink" onClick={this.logOut} href="/">Log Out</Nav.Link>
+                          <Nav.Link className="" href="/profile/">Profile</Nav.Link>
+                          <Nav.Link className="" href="/profile/create/">Submit Church</Nav.Link>
+                          <Nav.Link className="" onClick={this.logOut} href="/">Log Out</Nav.Link>
                         </Nav>
                     ) : (
-                        <Nav className="ml-auto">
-                          <Nav.Link className="navlink" href="/">Home</Nav.Link>
-                          <Nav.Link className="navlink" href="/login/">Church Login</Nav.Link>
-                          <Nav.Link className="navlink" href="/profile/">Account</Nav.Link>
-                          <Nav.Link className="navlink" href="/profile/create/">Submit Church</Nav.Link>
+                        <Nav className="ml-auto col-lg-8 col-xl-6  ">
+                          <Nav.Link className="" href="/">Home</Nav.Link>
+                          <Nav.Link className="" href="/login/">Church Login</Nav.Link>
+                          <Nav.Link className="" href="/profile/">Account</Nav.Link>
+                          <Nav.Link className="" href="/profile/create/">Submit Church</Nav.Link>
                         </Nav>
                     )
                     }
               </Navbar.Collapse>
             </Navbar>
+            </div>
             </Row>
 
         )

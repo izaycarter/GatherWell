@@ -5,8 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-    height: 100vh;
 }
 
 code {
@@ -18,4 +16,8 @@ ul{
     list-style: none;
     padding-inline-start: 0;
     margin-bottom: 0 !important;
+}
+a {
+    text-decoration: inherit !important;
+    color: inherit !important;
 }

@@ -38,10 +38,10 @@ class ChurchDetail extends Component {
         let thisChurch = this.props.events.filter(events => events.church === this.props.selectedChurch.id);
 
         let churchEvent = thisChurch.map(thisEvent =>(
-            <li key={thisEvent.id}>
-                <Card bg="primary" text="white">
-                    <Card.Header>On {thisEvent.date} At {thisEvent.address}</Card.Header>
-                    <Card.Title>{thisEvent.title}</Card.Title>
+            <li className="d-flex events-li" key={thisEvent.id}>
+                <Card className="events" text="white">
+                    <Card.Header className="event_title_date">{thisEvent.title} on {thisEvent.date}</Card.Header>
+                    <Card.Title className="event_address">location: {thisEvent.address}</Card.Title>
                     <Card.Body>{thisEvent.description}</Card.Body>
                 </Card>
             </li>
@@ -60,26 +60,35 @@ class ChurchDetail extends Component {
           </Modal.Header>
           <Modal.Body>
 
-            <h3>{this.props.selectedChurch.name}</h3>
-
-            <a href={`https://www.google.com/maps/search/?api=1&query=${this.props.selectedChurch.lat},${this.props.selectedChurch.lng}`} target="_blank">{this.props.selectedChurch.address}</a>
-            <div>Denomination: {this.props.selectedChurch.denomination}</div>
-            <div>Worship Style: {this.props.selectedChurch.worship_type}</div>
-            <p>
+            <h3 className="church-name">{this.props.selectedChurch.name}</h3>
+            <div className="address-link mb-2">
+                <a href={`https://www.google.com/maps/search/?api=1&query=${this.props.selectedChurch.lat},${this.props.selectedChurch.lng}`} target="_blank">{this.props.selectedChurch.address}</a>
+            </div>
+            <div>
+                <p>Denomination: {this.props.selectedChurch.denomination}</p>
+                <p>Worship Style: {this.props.selectedChurch.worship_type}</p>
+            </div>
+            <p className="church-description">
              {this.props.selectedChurch.description}
             </p>
-
-            <a href={this.props.selectedChurch.website} target="_blank">{this.props.selectedChurch.website}</a>
-            <form onSubmit={this.onSubmit}>
-                <p>{`want to know about new upcoming events for ${this.props.selectedChurch.name}?`}</p>
-                <label htmlFor="phone_number">enter phone number
-                <input type="text" name="phone_number" value={this.state.phone_number} onChange={this.handleChange} maxLength="10" placeholder="ex. 8641234567"></input>
-                <button>Follow!</button>
-                </label>
-            </form>
-            <ul>
-                {churchEvent}
-            </ul>
+            <div className="d-flex mb-3">
+                <a href={this.props.selectedChurch.website} target="_blank">{this.props.selectedChurch.website}</a>
+            </div>
+            <div className="subscribe-container mb-3">
+                <p className="d-flex justify-content-center want-to-subscribe-text">{`Want to know when ${this.props.selectedChurch.name} posts a new event?`}</p>
+                <form className="d-flex justify-content-center" onSubmit={this.onSubmit}>
+                    <label htmlFor="phone_number">enter phone number
+                    <input type="text" name="phone_number" value={this.state.phone_number} onChange={this.handleChange} maxLength="10" placeholder="ex. 8641234567"></input>
+                    <button>Follow!</button>
+                    </label>
+                </form>
+            </div>
+            <div>
+                <p className="event-list-title">Upcoming Events</p>
+                <ul className="d-flex justify-content-center">
+                    {churchEvent}
+                </ul>
+            </div>
 
           </Modal.Body>
           <Modal.Footer>

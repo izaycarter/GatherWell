@@ -1,14 +1,33 @@
 .header{
-    background-color:#ECEFDC;
+    background-color:#0b3f5b;
 }
 
 .title{
     font-family: 'Sirin Stencil', cursive;
-    color:#094862;
+    color:#FFF;
 }
-.navlink{
-    color: #000;
-    font-family: 'Sirin Stencil', cursive;
-    color:#094862;
 
+.nav-link{
+    color: #FFF !important;
+    font-family: 'Sirin Stencil', cursive;
+    display: flex;
+    font-size: 18px !important;
+}
+
+.navContainer {
+    width:100%;
+    max-width: 1400px;
+    display: flex;
+    margin:auto;
+
+}
+
+.navbar-toggler{
+    background-color: #7f91a4 !important;
+}
+
+@media(max-width: 991px){
+    .navContainer{
+        flex-direction: column;
+    }
 }

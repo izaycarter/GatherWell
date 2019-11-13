@@ -14,7 +14,7 @@ const MyMap = compose(withScriptjs, withGoogleMap) ( props =>{
     return(
 
         <GoogleMap
-            defaultZoom={10}
+            defaultZoom={12}
             defaultCenter={{ lat: 34.8485, lng: -82.4000 }}
             defaultOptions={{
             disableDefaultUI: true, // disable default map UI
@@ -78,6 +78,7 @@ export default class Map extends Component{
         axios.get("/api/v1/user/church/events/")
         .then(res =>{
             this.setState({events: res.data});
+            console.log(this.state.events)
         }).catch(error => {
             console.log(error)
         });

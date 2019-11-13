@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
+import "../Css/MapFilter.css"
 
 class MapFilter extends Component{
     constructor(props){
@@ -14,10 +15,10 @@ class MapFilter extends Component{
 
     render(){
       return (
-        <Row className="justify-content-around">
+        <Row className="justify-content-around no-gutters nav-filters">
             <div className="d-flex">
             <Form.Group className="">
-                <Form.Label>Denomination Type</Form.Label>
+                <Form.Label className="filter-labels">Denomination Type</Form.Label>
                 <Form.Control as="select" defaultValue="Any" name="denomination" onChange={this.props.handleChange}>
                     <option value="Any" >Any</option>
                     <option value="NON DENOMINATIONAL">Non Denominational</option>
@@ -40,9 +41,9 @@ class MapFilter extends Component{
                 </Form.Control>
             </Form.Group>
             </div>
-            <div className="d-flex">
+            <div className="d-flex ">
             <Form.Group className="">
-                <Form.Label>Worship Type</Form.Label>
+                <Form.Label className="filter-labels">Worship Type</Form.Label>
                 <Form.Control as="select" defaultValue="Any" name="worship_type" onChange={this.props.handleChange}>
                     <option value="Any" >Any</option>
                     <option value="NON LITURGICAL">Liturgical</option>
