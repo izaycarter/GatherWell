@@ -15,8 +15,8 @@ class MapFilter extends Component{
 
     render(){
       return (
-        <Row className="justify-content-around no-gutters nav-filters pl-4">
-            <div className="filters-div d-flex col justify-content-around">
+
+            <div className="filters-div d-flex justify-content-around">
                 <Form.Group className="d-flex filters ">
                     <Form.Label className="filter-labels">Denomination Type</Form.Label>
                     <Form.Control as="select" defaultValue="Any" name="denomination" onChange={this.props.handleChange}>
@@ -52,7 +52,7 @@ class MapFilter extends Component{
                     </Form.Control>
                 </Form.Group>
             </div>
-        </Row>
+
       )
   }
 }

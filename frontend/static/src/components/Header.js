@@ -56,7 +56,7 @@ class Header extends Component{
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse className="col" id="responsive-navbar-nav">
                   { isAuthenticated ? (
-                        <Nav className="ml-auto col-lg-11 col-xl-9">
+                        <Nav className=" ml-auto col-lg-12 col-xl-9">
                           <Nav.Link className="" href="/">Home</Nav.Link>
                           {isAdmin()}
                           <Nav.Link className="" href="/profile/">Profile</Nav.Link>
@@ -64,7 +64,7 @@ class Header extends Component{
                           <Nav.Link className="" onClick={this.logOut} href="/">Log Out</Nav.Link>
                         </Nav>
                     ) : (
-                        <Nav className="ml-auto col-lg-8 col-xl-7  ">
+                        <Nav className="ml-auto col-lg-9 col-xl-7  ">
                           <Nav.Link className="" href="/">Home</Nav.Link>
                           <Nav.Link className="" href="/login/">Church Login</Nav.Link>
                           <Nav.Link className="" href="/profile/">Account</Nav.Link>

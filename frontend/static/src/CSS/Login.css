@@ -1,1 +1,12 @@
+.login-Btn:hover{
+    background-color: #FF8800;
+    color: #FFF;
+}
 
+.login-Btn{
+    border-radius: 100px;
+}
+
+.SignUp-btn:hover{
+    padding:.3rem;
+}

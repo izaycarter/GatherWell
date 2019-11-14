@@ -44,7 +44,7 @@ class EventForm extends Component{
         return(
             <div className="d-flex create-profile-container">
                 <Form className="profile-form d-flex" onSubmit={this.submitEvent}>
-                    <h2 className="form-title d-flex justify-content-center">Create Event for {this.props.church.title}</h2>
+                    <h2 className="form-title d-flex justify-content-center">Create Event for {this.props.church.name}</h2>
 
                     <Form.Group className="d-flex" >
                         <Form.Label className="Form-label">Event Title:</Form.Label>
@@ -66,8 +66,8 @@ class EventForm extends Component{
                         <Form.Label className="Form-label">Date:</Form.Label>
                         <Form.Control as="input" type="date" name="date" value={this.state.date} onChange={this.handleChange}/>
                     </Form.Group>
-            
-                    <button>Create Event</button>
+
+                    <button className="login-Btn">Create Event</button>
                 </Form>
             </div>
         )

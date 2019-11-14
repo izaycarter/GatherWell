@@ -1,17 +1,21 @@
 .header{
-    background-color:#0b3f5b;
 }
 
 .title{
     font-family: 'Sirin Stencil', cursive;
-    color:#FFF;
+    color: #FF8800;
 }
 
 .nav-link{
-    color: #FFF !important;
+    color:  #FF8800 !important;
     font-family: 'Sirin Stencil', cursive;
     display: flex;
-    font-size: 18px !important;
+    font-size: 20px !important;
+}
+
+.nav-link:hover{
+    background-color: #FF8800;
+    color: #FFF !important;
 }
 
 .navContainer {
@@ -19,6 +23,8 @@
     max-width: 1400px;
     display: flex;
     margin:auto;
+    background: rgb(11,63,91);
+    background: radial-gradient(circle, rgba(11,63,91,0.23012955182072825) 63%, rgba(57,99,122,0.7147233893557423) 98%, rgba(255,136,0,0.1825105042016807) 100%);
 
 }
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card} from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
 import "../Css/Login.css";
 import "../Css/Base.css";
 import axios from "axios";
@@ -40,32 +40,31 @@ class Login extends Component {
   }
 
   render() {
+
+
     return  (
-            <section className="expand align-content-center">
-                <Card  bg="primary" text="white">
-                    <Card.Header>Login</Card.Header>
-                    <Card.Body>
-                      <form onSubmit={this.handleSubmit}>
-                        <p>
-                          <label htmlFor="username">Username</label>
-                          <input id='username' type='text' name='username' value={this.state.username} onChange={this.handleChange} placeholder='Enter username' required />
-                        </p>
-                        <p>
-                          <label htmlFor="email">Email</label>
-                          <input id='email' type='email' name='email' value={this.state.email} onChange={this.handleChange} placeholder='Enter email' required />
-                        </p>
-                        <p>
-                          <label htmlFor="password">Password</label>
-                          <input id='password' type='password' name='password' value={this.state.password} onChange={this.handleChange} placeholder='Enter password' required/>
-                        </p>
-                        <button>Login</button>
-                      </form>
-                    </Card.Body>
-                    <Card.Footer>
-                        <small>Don't have an acount? <a href="/signup/"><span>Click here to Sign up.</span></a></small>
-                    </Card.Footer>
-              </Card>
-          </section>
+            <div className="d-flex create-profile-container">
+                <Form className="profile-form d-flex" onSubmit={this.handleSubmit}>
+                    <h2 className="form-title d-flex justify-content-center">Login</h2>
+                    <Form.Group className="d-flex" >
+                        <Form.Label className="Form-label">Username:</Form.Label>
+                        <Form.Control as="input" type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder='Enter username' required />
+                    </Form.Group>
+                    <Form.Group className="d-flex" >
+                        <Form.Label className="Form-label">Email:</Form.Label>
+                        <Form.Control as="input" type="email" name="email" value={this.state.email} onChange={this.handleChange} placeholder='Enter email' required />
+                    </Form.Group>
+
+                    <Form.Group className="d-flex" >
+                        <Form.Label className="Form-label">Password:</Form.Label>
+                        <Form.Control as="input" type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder='Enter password' required />
+                    </Form.Group>
+                    <Form.Group className="d-flex" >
+                        <small>Don't have an acount? <a  href="/signup/"><span className="login-Btn SignUp-btn">Click here to Sign up.</span></a></small>
+                    </Form.Group>
+                    <button className="login-Btn">Login</button>
+                </Form>
+            </div>
     )
   }
 }

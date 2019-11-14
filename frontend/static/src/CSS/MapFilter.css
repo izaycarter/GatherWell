@@ -1,18 +1,17 @@
-.nav-filters{
-    width: 50vw;
-    color: #FFF;
-    font-family: 'Sirin Stencil', cursive;
-    max-width: 1400px;
-    display: flex;
-
-}
 
 .filter-labels{
-    font-size: 18px;
+    font-size: 20px;
+    color: #FF8800;
+
 }
 
 .filters{
     flex-direction: column;
+}
+
+.filters-div{
+    width:100%;
+    max-width: 1400px;
 }
 
 @media(max-width: 991px){

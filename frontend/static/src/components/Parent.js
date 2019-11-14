@@ -8,7 +8,7 @@ class Parent extends Component {
     constructor(props){
         super(props);
         this.state = {
-            isViewing: false
+            // isViewing: false
         }
         // this.showDetails = this.showDetails.bind(this);
     }
@@ -21,9 +21,9 @@ class Parent extends Component {
     render(){
 
         return(
-            <Row>
+            <div className="d-flex">
                 <Map className="col-sm-12" />
-            </Row>
+            </div>
         )
 
     }

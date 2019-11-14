@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import Form from 'react-bootstrap/Form';
+import "../Css/Login.css";
 
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -39,25 +41,28 @@ class SignUp extends Component {
   render() {
       console.log(this.props)
     return  (
-      <form onSubmit={this.handleSubmit}>
-        <p>
-          <label htmlFor="username">Username</label>
-          <input id='username' type='text' name='username' value={this.state.username} onChange={this.handleChange} placeholder='Enter username' required />
-        </p>
-        <p>
-          <label htmlFor="email">Email</label>
-          <input id='email' type='email' name='email' value={this.state.email} onChange={this.handleChange} placeholder='Enter email' required />
-        </p>
-        <p>
-          <label htmlFor="password">Password</label>
-          <input id='password1' type='password' name='password1' value={this.state.password1} onChange={this.handleChange} placeholder='Enter password' required/>
-        </p>
-        <p>
-          <label htmlFor="password">Password</label>
-          <input id='password2' type='password' name='password2' value={this.state.password2} onChange={this.handleChange} placeholder='Enter password' required/>
-        </p>
-        <button>Sign Up</button>
-      </form>
+        <div className="d-flex create-profile-container">
+            <Form className="profile-form d-flex" onSubmit={this.handleSubmit}>
+                <h2 className="form-title d-flex justify-content-center"><span>Sign Up</span></h2>
+                <Form.Group className="d-flex" >
+                    <Form.Label className="Form-label">Username:</Form.Label>
+                    <Form.Control as="input" type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder='Enter username' required />
+                </Form.Group>
+                <Form.Group className="d-flex" >
+                    <Form.Label className="Form-label">Email:</Form.Label>
+                    <Form.Control as="input" type="email" name="email" value={this.state.email} onChange={this.handleChange} placeholder='Enter email' required />
+                </Form.Group>
+                <Form.Group className="d-flex" >
+                    <Form.Label className="Form-label">Password:</Form.Label>
+                    <Form.Control as="input" type="password1" name="password" value={this.state.password1} onChange={this.handleChange} placeholder='Enter password' required />
+                </Form.Group>
+                <Form.Group className="d-flex" >
+                    <Form.Label className="Form-label">Password:</Form.Label>
+                    <Form.Control as="input" type="password2" name="password" value={this.state.password} onChange={this.handleChange} placeholder='Enter password' required />
+                </Form.Group>
+                <button className="login-Btn">Sign Up</button>
+            </Form>
+      </div>
     )
   }
 }

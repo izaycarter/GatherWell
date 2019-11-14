@@ -145,7 +145,7 @@ export default class Map extends Component{
 
         return(
 
-            <div className="" style={{ width:"100vw", height:"100vh" }}>
+            <div style={{ width:"100vw", height:"100vh" }}>
                 <MapFilter handleChange={this.handleChange}/>
                 <MyMap
                     selectedMarker={this.state.selectedMarker}

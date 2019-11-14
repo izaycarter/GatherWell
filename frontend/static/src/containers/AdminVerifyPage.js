@@ -141,8 +141,8 @@ class AdminVerifyPage extends Component{
         return(
             <ul>
                 {this.state.churches.length !== 0 ? (
-                    <h2>Pending Churches</h2>)
-                    :(<h2>There are no Churches pendeing Verifaction</h2>)}
+                    <h2 className="church-name">Pending Churches</h2>)
+                    :(<h2 className="church-name">There are no Churches pendeing Verifaction</h2>)}
                 {churchList}
             </ul>
         )

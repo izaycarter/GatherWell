@@ -8,19 +8,20 @@
     flex-direction: column;
     width: 90%;
     padding: 2rem;
-    border: 1px solid #fff;
     background-color: hsla(211, 23%, 15%, 0.9);
+    font-size: 20px;
+    border-radius: 60px
 }
 
 .form-title{
-    color:  #FFF;
-    font-family: 'Sirin Stencil', cursive;
-    border-bottom: 1px solid #FFF;
+    color:  #FF8800;
+    text-decoration: underline #FFF;
+    text-decoration-style: wavy;
 }
 
 .Form-label{
-    color:  #FFF;
-    font-family: 'Sirin Stencil', cursive;
+    color:  #FF8800;
+
 }
 
 .form-group{
@@ -30,4 +31,14 @@
 .preview-image{
     width:400px;
     margin-bottom: 1rem;
+}
+
+.form-control {
+    font-size: 1.3rem;
+}
+
+
+ .no-underline{
+    color:  #FF8800;
+    text-decoration: none !important;
 }

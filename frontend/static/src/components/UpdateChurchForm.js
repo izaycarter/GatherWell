@@ -55,7 +55,7 @@ class UpdateChurchForm extends Component{
         return(
             <div className="d-flex create-profile-container">
                 <Form className="profile-form d-flex" onSubmit={this.updateSubmit}>
-                    <h2 className="form-title d-flex justify-content-center">{this.state.name}(Edit Mode)</h2>
+                    <h2 className="d-flex justify-content-center"><span className="no-underline">{this.state.name}</span><span className="form-title ">(Edit Mode)</span></h2>
                     <Form.Group className="d-flex" >
                         <Form.Label className="Form-label">Church name:</Form.Label>
                         <Form.Control as="input" type="text" name="name" value={this.state.name} onChange={this.handleChange}/>

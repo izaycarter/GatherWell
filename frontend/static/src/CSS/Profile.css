@@ -5,7 +5,7 @@
     border: 1px solid #fff;
     background-color: hsla(211, 23%, 15%, 0.9);
     margin: auto;
-    font-size: 18px;
+    font-size: 20px;
 
 }
 
@@ -28,12 +28,14 @@
 
 .profile_topic_section{
     font-weight: bold;
+    color: #FF8800;
 }
 
 .list-group-item{
     font-family: 'Sirin Stencil', cursive;
     color: #FFF;
-    background-color: hsla(198, 100%, 18%, 0.57)
+    background-color:inherit;
+    border: none;
 
 }
 
@@ -49,12 +51,13 @@
     width: 90%;
     font-size: 26px;
     margin-top: 2rem;
-    color: #FFF;
+    color: #FF8800;
     font-family: 'Sirin Stencil', cursive;
 }
 
 .event-header{
     font-size: 26px;
+    color: #FF8800;
     border-bottom: none;
 }
 
