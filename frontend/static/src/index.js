@@ -8,7 +8,7 @@ import SignUp from "./containers/SignUp";
 import Profile from "./components/Profile";
 import CreateProfile from "./containers/CreateProfile";
 import AdminVerifyPage from "./containers/AdminVerifyPage";
-
+import About from "./components/About";
 
 import BaseLayout from "./components/BaseLayout";
 import PrivateRoute from "./components/PrivateRoute";
@@ -22,6 +22,7 @@ ReactDOM.render(
                 <PrivateRoute path="/profile/create/" component={CreateProfile}/>
                 <PrivateRoute path="/profile/" component={Profile}/>
                 <PrivateRoute path="/admin/verify/" component={AdminVerifyPage}/>
+                <Route path='/about/' component={About}/>
                 <Route path="/signup/" component={SignUp}/>
                 <Route path='/login/' component={Login}/>
                 <Route exact path="/" component={Parent}/>

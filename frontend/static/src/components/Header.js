@@ -41,7 +41,9 @@ class Header extends Component{
 
         let isAdmin = () => {
             if(JSON.parse(localStorage.getItem("my-app-user")).username === "admin"){
-                return <Nav.Link className="" href="/admin/verify/">Pending Verification</Nav.Link>
+                return <Nav.Link className="" href="/admin/verify/">Admin</Nav.Link>
+            }else{
+                return <Nav.Link className="" href="/About/">About</Nav.Link>
             }
 
         }
@@ -57,7 +59,7 @@ class Header extends Component{
               <Navbar.Collapse className="col" id="responsive-navbar-nav">
                   { isAuthenticated ? (
                         <Nav className=" ml-auto col-lg-12 col-xl-9">
-                          <Nav.Link className="" href="/">Home</Nav.Link>
+                          <Nav.Link className="" href="/">Explore</Nav.Link>
                           {isAdmin()}
                           <Nav.Link className="" href="/profile/">Profile</Nav.Link>
                           <Nav.Link className="" href="/profile/create/">Submit Church</Nav.Link>
@@ -65,9 +67,9 @@ class Header extends Component{
                         </Nav>
                     ) : (
                         <Nav className="ml-auto col-lg-9 col-xl-7  ">
-                          <Nav.Link className="" href="/">Home</Nav.Link>
+                          <Nav.Link className="" href="/">Explore</Nav.Link>
+                          <Nav.Link className="" href="/about/">About</Nav.Link>
                           <Nav.Link className="" href="/login/">Church Login</Nav.Link>
-                          <Nav.Link className="" href="/profile/">Account</Nav.Link>
                           <Nav.Link className="" href="/profile/create/">Submit Church</Nav.Link>
                         </Nav>
                     )
