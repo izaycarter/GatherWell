@@ -67,15 +67,23 @@ class ChurchEventListCreateAPIView(generics.ListCreateAPIView):
             church = church,
         )
         subscribers = church.subscribers.all()
+        # import pdb; pdb.set_trace()
+        # event_date = event.date.strftime('%m/%d/%Y')
 
-        event_date = event.date.strftime('%m/%d/%Y')
+        #  METHOD TO RUN IF I HAD PAID TWILIO ACCOUNT TO SEND TO ALL SUBSCRIBERS
+        # for subscriber in church.subscribers.all():
+        #     message = client.messages \
+        #             .create(
+        #                  body= church.name +" Posted a new event titled :" + event.title + ". description of the event is: " + event.description + " and will be hosted at " + event.address + " on " + event_date ,
+        #                  from_='+12015844489',
+        #                  to= subscriber.phone_number
+        #              )
 
-        for subscriber in church.subscribers.all():
-            message = client.messages \
+        message = client.messages \
                     .create(
-                         body= church.name +" Posted a new event titled :" + event.title + ". description of the event is: " + event.description + " and will be hosted at " + event.address + " on " + event_date ,
+                         body= church.name +" Posted a new event titled :" + event.title + ". description of the event is: " + event.description + " and will be hosted at " + event.address + " on " + event.date ,
                          from_='+12015844489',
-                         to= subscriber.phone_number
+                         to= '+18649156152'
                      )
 
 

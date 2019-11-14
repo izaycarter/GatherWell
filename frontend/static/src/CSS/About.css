@@ -1,7 +1,36 @@
-.developer-title{
-    font-size: 24px;
+.about-container{
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
 }
 
-.developer-tag{
-    
+.developer-title{
+    font-size: 26px;
+}
+
+.about-text{
+    font-size: 32px;
+}
+
+.Welcome{
+
+    font-size: 32px;
+    margin-top: 2rem;
+    color: #FF8800;
+    font-family: 'Sirin Stencil', cursive;
+}
+
+.icon{
+    color: #FFF;
+    font-size: 3rem;
+}
+
+.icon:hover{
+    color:#FF8800;
+
+}
+
+.icon-a{
+    align-items: center;
+    padding: 1rem;
 }

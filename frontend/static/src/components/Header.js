@@ -50,10 +50,10 @@ class Header extends Component{
 
 
         return (
-            <Row className="header no-gutters">
+            <Row className="header">
             <div className="navContainer">
 
-            <h1 className="title col-sm-12 col-md-5 col-lg-4"><a href="/">Gathering Well</a></h1>
+            <h1 className="title ml-3 col-sm-12 col-md-5 col-lg-4"><a href="/">Gathering Well</a></h1>
             <Navbar className="col" collapseOnSelect expand="lg">
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse className="col" id="responsive-navbar-nav">

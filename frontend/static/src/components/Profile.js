@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from "axios";
 import Geocode from "react-geocode";
 import {Card, ListGroup , ListGroupItem} from "react-bootstrap";
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 import UpdateChurchForm from "./UpdateChurchForm";
 import EventForm from "./EventForm";
@@ -31,14 +32,19 @@ class Profile extends Component{
         this.editChurch = this.editChurch.bind(this);
         this.updateSubmit = this.updateSubmit.bind(this);
         this.handleImageChange = this.handleImageChange.bind(this);
+        // this.editchurchNotify = this.editchurchNotify.bind(this);
 
         this.addingEvent = this.addingEvent.bind(this);
         this.editEvent = this.editEvent.bind(this);
         this.submitEvent = this.submitEvent.bind(this);
         this.updateEventSubmit = this.updateEventSubmit.bind(this);
         this.deleteEvent = this.deleteEvent.bind(this);
+        // this.eventNotify = this.eventNotify.bind(this);
     }
 
+    // editchurchNotify = () => {
+    //     NotificationManager.info("Church was successfully updated.", "Complete", 3000);
+    // }
 
 
     componentDidMount(){
@@ -102,7 +108,6 @@ class Profile extends Component{
     }
 
     updateSubmit(church){
-        console.log('updated church', church);
         let updateChurch = () =>{
             let formData = new FormData();
             let church = Object.assign({}, this.state.church);
@@ -117,7 +122,9 @@ class Profile extends Component{
             for (var key in church) {
                 formData.append(key, church[key]);
             }
-
+            let notitfy = () =>{
+                NotificationManager.info("Church has been updated.", "Complete", 3000);
+            }
             axios.patch(`/api/v1/churches/${this.state.church.id}/`, formData, {
                 headers: {
                     'Authorization': `Token ${JSON.parse(localStorage.getItem("my-app-user")).token}`,
@@ -132,7 +139,8 @@ class Profile extends Component{
                 church = Object.assign(church, res.data);
 
 
-                this.setState((prevState, props) => ({editingChurch: !prevState.editingChurch, church_list:church_list}));
+
+                this.setState((prevState, props) => ({editingChurch: !prevState.editingChurch, church_list:church_list}), notitfy);
 
             })
             .catch(error => {
@@ -173,7 +181,9 @@ class Profile extends Component{
             formData.append(key, newEvent[key]);
         }
 
-
+        let notitfy = () =>{
+            NotificationManager.info("Event is Created", "Complete", 3000);
+        }
 
         axios.post("/api/v1/user/church/events/", formData ,{
             headers: {
@@ -181,8 +191,8 @@ class Profile extends Component{
                 "content-type": "multipart/form-data"
             }
         }).then(res =>{
-            axios.post()
-            this.setState((prevState)=>({addingEvent: !prevState.addingEvent}));
+
+            this.setState((prevState)=>({addingEvent: !prevState.addingEvent}), notitfy);
             // messageSubscribers();
 
         }).catch(error => {
@@ -202,6 +212,9 @@ class Profile extends Component{
         for (var key in updatedEvent) {
             formData.append(key, updatedEvent[key]);
         }
+        let notitfy = () =>{
+            NotificationManager.info("Event has been updated.", "Complete", 3000);
+        }
 
         axios.patch(`/api/v1/user/church/events/r-u-d/${this.state.eventEdting.id}/`, formData ,{
             headers: {
@@ -216,7 +229,7 @@ class Profile extends Component{
             eventEdting = Object.assign(eventEdting, res.data);
 
 
-            this.setState((prevState)=>({editingEvent: !prevState.editingEvent,eventEdting:{}, }));
+            this.setState((prevState)=>({editingEvent: !prevState.editingEvent,eventEdting:{}, }),notitfy);
 
         }).catch(error => {
             console.log(error)
@@ -225,12 +238,16 @@ class Profile extends Component{
     }
 
     deleteEvent(churchEvent){
+        let notitfy = () =>{
+            NotificationManager.info("Event has been Deleted.", "Delete Complete", 3000);
+        }
+
         axios.delete(`/api/v1/user/church/events/r-u-d/${churchEvent.id}/`, {headers: {'Authorization': `Token ${JSON.parse(localStorage.getItem("my-app-user")).token}`}})
         .then(res =>{
             let events = [...this.state.events];
             let index = events.indexOf(res.data);
             events.splice(index, 1);
-            this.setState({events});
+            this.setState({events},notitfy);
         })
         .catch(error => {
             console.log(error);
@@ -254,7 +271,7 @@ class Profile extends Component{
                     <div className>
                         <h2 className=" d-flex church-name justify-content-center">{church.name}</h2>
                     <Card className="profile-card">
-                      <Card.Img variant="top" src={church.image} atl="church profile picture" />
+                      <Card.Img className="church-picture" variant="top" src={church.image} atl="church profile picture" fluid />
                       <Card.Body>
                         <Card.Text className="profile-description">
                           {church.description}
@@ -295,6 +312,7 @@ class Profile extends Component{
         return(
 
             <ul className="d-flex profile-list justify-content-center">
+                <NotificationContainer/>
                 {churchList}
             </ul>
         )

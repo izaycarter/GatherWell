@@ -1,9 +1,9 @@
-.header{
-}
+
 
 .title{
     font-family: 'Sirin Stencil', cursive;
     color: #FF8800;
+    padding-left: 2.5rem;
 }
 
 .nav-link{
@@ -17,14 +17,12 @@
     background-color: #FF8800;
     color: #FFF !important;
 }
-
+/* 1825105042016807 */
 .navContainer {
     width:100%;
-    max-width: 1400px;
     display: flex;
     margin:auto;
-    background: rgb(11,63,91);
-    background: radial-gradient(circle, rgba(11,63,91,0.23012955182072825) 63%, rgba(57,99,122,0.7147233893557423) 98%, rgba(255,136,0,0.1825105042016807) 100%);
+    background: radial-gradient(circle, rgba(11,63,91,0.23012955182072825) 63%, rgba(57,99,122,0.7147233893557423) 98%, rgba(255,136,0,0.15) 100%);
 
 }
 

@@ -1,7 +1,8 @@
 import React , {Component} from 'react';
-import {Button,  Modal , Card} from "react-bootstrap";
+import {Button,  Modal , Card, Image} from "react-bootstrap";
 import "../Css/ChurchDetail.css";
 import axios from "axios";
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
@@ -14,6 +15,11 @@ class ChurchDetail extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.subscribed = this.subscribed.bind(this);
+    }
+
+    subscribed = () => {
+        NotificationManager.info("You're Subscribed!", "Complete", 3000);
     }
 
     handleChange(e){
@@ -28,7 +34,10 @@ class ChurchDetail extends Component {
 
         axios.post(`/api/v1/churches/subscribers/add/`, {phone_number: this.state.phone_number, selected_church_id:this.props.selectedChurch.id})
         .then(res =>{
+            this.setState({phone_number:""})
             console.log(res)
+            this.subscribed();
+
         })
         .catch()
 
@@ -53,29 +62,30 @@ class ChurchDetail extends Component {
           aria-labelledby="contained-modal-title-vcenter"
           centered
         >
+            <NotificationContainer/>
           <Modal.Header className="row no-gutters justify-content-center" closeButton>
             <div className="col d-flex justify-content-center ">
-              <img className="church-picture" src={this.props.selectedChurch.image} atl={this.props.selectedChurch.name} />
+              <Image className="church-picture" src={this.props.selectedChurch.image} atl={this.props.selectedChurch.name} fluid />
             </div>
           </Modal.Header>
           <Modal.Body>
 
             <h3 className="church-name">{this.props.selectedChurch.name}</h3>
             <div className="address-link mb-2">
-                <a href={`https://www.google.com/maps/search/?api=1&query=${this.props.selectedChurch.lat},${this.props.selectedChurch.lng}`} target="_blank">{this.props.selectedChurch.address}</a>
+                <a className="detail-link" href={`https://www.google.com/maps/search/?api=1&query=${this.props.selectedChurch.lat},${this.props.selectedChurch.lng}`} target="_blank">{this.props.selectedChurch.address}</a>
             </div>
             <div>
-                <p>Denomination: {this.props.selectedChurch.denomination}</p>
-                <p>Worship Style: {this.props.selectedChurch.worship_type}</p>
+                <p className="font-of-details"><span className="event-header">Denomination:</span> {this.props.selectedChurch.denomination}</p>
+                <p className="font-of-details"><span className="event-header">Worship Style:</span> {this.props.selectedChurch.worship_type}</p>
             </div>
-            <p className="church-description">
+            <p className="church-description font-of-details">
              {this.props.selectedChurch.description}
             </p>
             <div className="d-flex mb-3">
-                <a href={this.props.selectedChurch.website} target="_blank">{this.props.selectedChurch.website}</a>
+                <a className="detail-link" href={this.props.selectedChurch.website} target="_blank">{this.props.selectedChurch.website}</a>
             </div>
             <div className="subscribe-container mb-3">
-                <p className="d-flex justify-content-center want-to-subscribe-text">{`Want to know when ${this.props.selectedChurch.name} posts a new event?`}</p>
+                <p className="d-flex justify-content-center want-to-subscribe-text event-header">{`Want to know when ${this.props.selectedChurch.name} posts a new event?`}</p>
                 <form className="d-flex justify-content-center" onSubmit={this.onSubmit}>
                     <label htmlFor="phone_number">enter phone number
                     <input type="text" name="phone_number" value={this.state.phone_number} onChange={this.handleChange} maxLength="10" placeholder="ex. 8641234567"></input>

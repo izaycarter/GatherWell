@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-notifications/lib/notifications.css';
+
 import Login from './components/Login';
 import Parent from "./components/Parent";
 import SignUp from "./containers/SignUp";
@@ -9,11 +12,11 @@ import Profile from "./components/Profile";
 import CreateProfile from "./containers/CreateProfile";
 import AdminVerifyPage from "./containers/AdminVerifyPage";
 import About from "./components/About";
-
 import BaseLayout from "./components/BaseLayout";
 import PrivateRoute from "./components/PrivateRoute";
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+
 
 ReactDOM.render(
     <Router>

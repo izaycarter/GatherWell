@@ -1,6 +1,6 @@
 
 .filter-labels{
-    font-size: 20px;
+    font-size: 26px;
     color: #FF8800;
 
 }
@@ -11,7 +11,7 @@
 
 .filters-div{
     width:100%;
-    max-width: 1400px;
+    padding: 2rem;
 }
 
 @media(max-width: 991px){
