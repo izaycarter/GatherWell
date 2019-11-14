@@ -41,7 +41,7 @@ class About extends Component{
                   <Card.Body>
                     <div className="developer-title d-flex justify-content-center"><span className="profile_topic_section pr-2">Developed By:</span> Isaiah Carter</div>
                     <div className=" icons-div d-flex justify-content-center">
-                    <a href="www.linkedin.com/in/isaiah-c-gvl" target="_blank" className="icon-a d-flex pl-2" ><FontAwesomeIcon className="icon" icon={faLinkedin} size="lg"/></a> <a href="https://github.com/izaycarter" target="_blank" className="icon-a d-flex pl-2"><FontAwesomeIcon className="icon" icon={faGithub} size="lg" /></a>
+                    <a href="http://www.linkedin.com/in/isaiah-c-gvl" target="_blank" className="icon-a d-flex pl-2" ><FontAwesomeIcon className="icon" icon={faLinkedin} size="lg"/></a> <a href="https://github.com/izaycarter" target="_blank" className="icon-a d-flex pl-2"><FontAwesomeIcon className="icon" icon={faGithub} size="lg" /></a>
                     </div>
                   </Card.Body>
                 </Card>
