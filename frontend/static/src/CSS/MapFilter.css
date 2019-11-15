@@ -11,7 +11,9 @@
 
 .filters-div{
     width:100%;
-    padding: 2rem;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;    
 }
 
 @media(max-width: 991px){

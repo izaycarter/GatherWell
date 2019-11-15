@@ -58,14 +58,21 @@
     justify-content: center;
 }
 
-.event_title_date{
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
+.event-detail-div{
+    flex-direction: column;
 }
 
-.events-li{
-    max-width: 450px;
+
+.event_title_date{
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    color: #FF8800;
+}
+
+
+.event-list{
+    flex-direction: column;
 }
 
 .event-list-title{

@@ -49,7 +49,7 @@ class ChurchDetail extends Component {
         let churchEvent = thisChurch.map(thisEvent =>(
             <li className="d-flex events-li" key={thisEvent.id}>
                 <Card className="events" text="white">
-                    <Card.Header className="event_title_date">{thisEvent.title} on {thisEvent.date}</Card.Header>
+                    <Card.Header className="event_title_date">{thisEvent.title}</Card.Header>
                     <Card.Title className="event_address">location: {thisEvent.address}</Card.Title>
                     <Card.Body>{thisEvent.description}</Card.Body>
                 </Card>
@@ -93,9 +93,9 @@ class ChurchDetail extends Component {
                     </label>
                 </form>
             </div>
-            <div>
+            <div className="event-detail-div d-flex justify-content-center">
                 <p className="event-list-title event-header">Upcoming Events:</p>
-                <ul className="d-flex justify-content-center">
+                <ul className="event-list d-flex justify-content-center">
                     {churchEvent}
                 </ul>
             </div>

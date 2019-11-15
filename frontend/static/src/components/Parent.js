@@ -21,7 +21,7 @@ class Parent extends Component {
     render(){
 
         return(
-            <div className="d-flex">
+            <div className="row">
                 <Map className="col-sm-12" />
             </div>
         )

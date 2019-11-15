@@ -1,7 +1,6 @@
 body{
-    background: rgb(255,255,255);
-background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(11,63,91,1) 30%, rgba(255,255,255,1) 100%);
-    background-size: contain;
+    background: linear-gradient(0deg, rgba(47,102,161,0.788953081232493) 0%, rgba(59,121,187,0.4108018207282913) 49%, rgba(47,102,161,0.8841911764705882) 100%);
+    background-size: cover;
     height: 100%;
     color:  #FFF;
     font-family: 'Sirin Stencil', cursive;

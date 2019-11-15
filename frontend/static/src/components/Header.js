@@ -54,11 +54,11 @@ class Header extends Component{
             <div className="navContainer">
 
             <h1 className="title ml-3 col-sm-12 col-md-5 col-lg-4"><a href="/">Gathering Well</a></h1>
-            <Navbar className="col" collapseOnSelect expand="lg">
+            <Navbar className="col mr-3" collapseOnSelect expand="lg">
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <Navbar.Collapse className="col" id="responsive-navbar-nav">
+              <Navbar.Collapse className="col justify-content-end" id="responsive-navbar-nav">
                   { isAuthenticated ? (
-                        <Nav className=" ml-auto col-lg-12 col-xl-9">
+                        <Nav className="justify-content-end">
                           <Nav.Link className="" href="/">Explore</Nav.Link>
                           {isAdmin()}
                           <Nav.Link className="" href="/profile/">Profile</Nav.Link>
@@ -66,7 +66,7 @@ class Header extends Component{
                           <Nav.Link className="" onClick={this.logOut} href="/">Log Out</Nav.Link>
                         </Nav>
                     ) : (
-                        <Nav className="ml-auto col-lg-9 col-xl-7  ">
+                        <Nav className="justify-content-end">
                           <Nav.Link className="" href="/">Explore</Nav.Link>
                           <Nav.Link className="" href="/about/">About</Nav.Link>
                           <Nav.Link className="" href="/login/">Church Login</Nav.Link>

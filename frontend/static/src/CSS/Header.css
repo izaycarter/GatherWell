@@ -22,8 +22,7 @@
     width:100%;
     display: flex;
     margin:auto;
-    background: radial-gradient(circle, rgba(11,63,91,0.23012955182072825) 63%, rgba(57,99,122,0.7147233893557423) 98%, rgba(255,136,0,0.15) 100%);
-
+    
 }
 
 .navbar-toggler{
