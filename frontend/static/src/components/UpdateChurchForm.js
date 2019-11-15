@@ -123,7 +123,7 @@ class UpdateChurchForm extends Component{
                         null
                     )}
 
-                    <button>Update</button>
+                    <button className="login-Btn" >Update</button>
                 </Form>
             </div>
         )

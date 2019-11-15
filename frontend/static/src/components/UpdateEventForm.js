@@ -72,7 +72,7 @@ class UpdateEventForm extends Component{
                         <Form.Control as="input" type="date" name="date" value={this.state.date} onChange={this.handleChange}/>
                     </Form.Group>
 
-                    <button>Create Event</button>
+                    <button className="login-Btn">Update Event</button>
                 </Form>
             </div>
         )
