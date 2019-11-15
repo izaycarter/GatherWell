@@ -54,11 +54,11 @@ class SignUp extends Component {
                 </Form.Group>
                 <Form.Group className="d-flex" >
                     <Form.Label className="Form-label">Password:</Form.Label>
-                    <Form.Control as="input" type="password1" name="password" value={this.state.password1} onChange={this.handleChange} placeholder='Enter password' required />
+                    <Form.Control as="input" type="password1" name="password1" value={this.state.password1} onChange={this.handleChange} placeholder='Enter password' required />
                 </Form.Group>
                 <Form.Group className="d-flex" >
                     <Form.Label className="Form-label">Password:</Form.Label>
-                    <Form.Control as="input" type="password2" name="password" value={this.state.password} onChange={this.handleChange} placeholder='Enter password' required />
+                    <Form.Control as="input" type="password2" name="password2" value={this.state.password} onChange={this.handleChange} placeholder='Enter password' required />
                 </Form.Group>
                 <button className="login-Btn">Sign Up</button>
             </Form>

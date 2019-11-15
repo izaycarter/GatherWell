@@ -20,7 +20,7 @@ class About extends Component{
 
                   <Card.Body>
                     <Card.Text className="about-text">
-                      The <span className="profile_topic_section" >Gathering Well</span> is a website designed to help people new to the Greenville area explore christian based chruches. A cental location of information provied by the churches directly through their profile on this site, prior to being visable to the public <span className="profile_topic_section" >every profile is verified</span> of its context and information. This in return allows churches to <span className="profile_topic_section" >showcase their personal characteristics</span> as well as beliefs.
+                      The <span className="profile_topic_section" >Gathering Well</span> is a website designed to help people new to the Greenville area explore christian based churches.This is a central location of information provided by the churches directly through their profile on this site. Prior to being visible to the public <span className="profile_topic_section" >every profile is verified</span> of it's context and information. This in return allows churches to <span className="profile_topic_section" >present their personal characteristics</span> as well as beliefs.
                     </Card.Text>
                   </Card.Body>
                   <Card.Body>
