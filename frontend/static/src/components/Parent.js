@@ -18,9 +18,9 @@ class Parent extends Component {
     render(){
 
         return(
-            <div className="row">
+            <Row>
                 <Map className="col-sm-12" />
-            </div>
+            </Row>
         )
 
     }

@@ -281,7 +281,7 @@ class Profile extends Component{
                             <ListGroupItem><span className="profile_topic_section">Denomination:</span> {church.denomination}</ListGroupItem>
                             <ListGroupItem><span className="profile_topic_section">Worship style: </span>{church.worship_type}</ListGroupItem>
                             <ListGroupItem><span className="profile_topic_section">Address: </span>{church.address}</ListGroupItem>
-                            <ListGroupItem><span className="profile_topic_section">Website: </span><a href={church.website} target="_blank">{church.website}</a></ListGroupItem>
+                            <ListGroupItem><span className="profile_topic_section">Website: </span><a rel="noopener noreferrer" href={church.website} target="_blank">{church.website}</a></ListGroupItem>
                        </ListGroup>
                        <Card.Body className="d-flex justify-content-between">
                             <button onClick={() => this.addingEvent(church)}>Add Event</button>

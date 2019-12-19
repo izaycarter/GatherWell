@@ -72,7 +72,7 @@ class ChurchDetail extends Component {
 
             <h3 className="church-name">{this.props.selectedChurch.name}</h3>
             <div className="address-link mb-2">
-                <a className="detail-link" href={`https://www.google.com/maps/search/?api=1&query=${this.props.selectedChurch.lat},${this.props.selectedChurch.lng}`} target="_blank">{this.props.selectedChurch.address}</a>
+                <a className="detail-link" rel="noopener noreferrer" href={`https://www.google.com/maps/search/?api=1&query=${this.props.selectedChurch.lat},${this.props.selectedChurch.lng}`} target="_blank">{this.props.selectedChurch.address}</a>
             </div>
             <div>
                 <p className="font-of-details"><span className="event-header">Denomination:</span> {this.props.selectedChurch.denomination}</p>
@@ -82,7 +82,7 @@ class ChurchDetail extends Component {
              {this.props.selectedChurch.description}
             </p>
             <div className="d-flex mb-3">
-                <a className="detail-link" href={this.props.selectedChurch.website} target="_blank">{this.props.selectedChurch.website}</a>
+                <a className="detail-link" rel="noopener noreferrer" href={this.props.selectedChurch.website} target="_blank">{this.props.selectedChurch.website}</a>
             </div>
             <div className="subscribe-container mb-3">
                 <p className="d-flex justify-content-center want-to-subscribe-text event-header">{`Want to know when ${this.props.selectedChurch.name} posts a new event?`}</p>
