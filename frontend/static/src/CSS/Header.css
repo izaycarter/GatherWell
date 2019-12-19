@@ -6,6 +6,10 @@
     padding-left: 2.5rem;
 }
 
+.logout-link{
+    background-color: none;
+}
+
 .nav-link{
     color:  #FF8800 !important;
     font-family: 'Sirin Stencil', cursive;

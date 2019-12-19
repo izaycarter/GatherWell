@@ -15,18 +15,19 @@ class Header extends Component{
             // isAuthenticated: false
         }
 
-
     }
 
     componentDidMount(){
         // this.setState({isAuthenticated: localStorage.getItem("my-app-user") !== null ? true: false})
     }
 
+   
+
     logOut = () => {
         axios.post("/api/v1/rest-auth/logout/", {headers: {'Authorization': `Token ${JSON.parse(localStorage.getItem("my-app-user")).token}`}})
         .then(res => {
             localStorage.removeItem("my-app-user")
-            // this.isAuthenticated()
+            window.location.reload(false);
 
         })
         .catch(error => {
@@ -63,7 +64,7 @@ class Header extends Component{
                           {isAdmin()}
                           <Nav.Link className="" href="/profile/">Profile</Nav.Link>
                           <Nav.Link className="" href="/profile/create/">Submit Church</Nav.Link>
-                          <Button className="" onClick={this.logOut} >Log Out</Button>
+                          <Nav.Link className="" onClick={this.logOut} >Log Out</Nav.Link>
                         </Nav>
                     ) : (
                         <Nav className="justify-content-end">
