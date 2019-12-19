@@ -43,7 +43,7 @@ class Header extends Component{
             if(JSON.parse(localStorage.getItem("my-app-user")).username === "admin"){
                 return <Nav.Link className="" href="/admin/verify/">Admin</Nav.Link>
             }else{
-                return <Nav.Link className="" href="/About/">About</Nav.Link>
+                return <Nav.Link className="" href="/about/">About</Nav.Link>
             }
 
         }
