@@ -8,15 +8,12 @@ class Parent extends Component {
     constructor(props){
         super(props);
         this.state = {
-            // isViewing: false
+            
         }
-        // this.showDetails = this.showDetails.bind(this);
+
     }
 
-    // showDetails(){
-    //     this.setState((prevState)=>({isViewing: !prevState.isViewing}));
-    //     console.log(this.state.isViewing);
-    // }
+   
 
     render(){
 

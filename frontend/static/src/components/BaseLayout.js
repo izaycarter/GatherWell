@@ -10,6 +10,7 @@ class BaseLayout extends Component{
     constructor(props){
         super(props);
         this.state={
+
         }
 
     }
@@ -18,7 +19,7 @@ class BaseLayout extends Component{
     render(){
       return (
         <main className="container-fluid body">
-            <Header/>
+            <Header />
             {this.props.children}
         </main>
       );

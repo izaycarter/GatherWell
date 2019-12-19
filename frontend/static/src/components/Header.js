@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Navbar, Nav, Row} from 'react-bootstrap';
+import { Navbar, Nav, Row, Button} from 'react-bootstrap';
 import axios from "axios";
 import "../Css/Header.css"
 
@@ -63,7 +63,7 @@ class Header extends Component{
                           {isAdmin()}
                           <Nav.Link className="" href="/profile/">Profile</Nav.Link>
                           <Nav.Link className="" href="/profile/create/">Submit Church</Nav.Link>
-                          <Nav.Link className="" onClick={this.logOut} href="/">Log Out</Nav.Link>
+                          <Button className="" onClick={this.logOut} >Log Out</Button>
                         </Nav>
                     ) : (
                         <Nav className="justify-content-end">
