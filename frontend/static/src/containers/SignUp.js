@@ -46,19 +46,19 @@ class SignUp extends Component {
                 <h2 className="form-title d-flex justify-content-center"><span>Sign Up</span></h2>
                 <Form.Group className="d-flex" >
                     <Form.Label className="Form-label">Username:</Form.Label>
-                    <Form.Control as="input" type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder='Enter username' required />
+                    <Form.Control  type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder='Enter username' required />
                 </Form.Group>
                 <Form.Group className="d-flex" >
                     <Form.Label className="Form-label">Email:</Form.Label>
-                    <Form.Control as="input" type="email" name="email" value={this.state.email} onChange={this.handleChange} placeholder='Enter email' required />
+                    <Form.Control  type="email" name="email" value={this.state.email} onChange={this.handleChange} placeholder='Enter email' required />
                 </Form.Group>
                 <Form.Group className="d-flex" >
                     <Form.Label className="Form-label">Password:</Form.Label>
-                    <Form.Control as="input" type="password1" name="password1" value={this.state.password1} onChange={this.handleChange} placeholder='Enter password' required />
+                    <Form.Control  type="password" name="password1" value={this.state.password1} onChange={this.handleChange} placeholder='Enter password' required />
                 </Form.Group>
                 <Form.Group className="d-flex" >
                     <Form.Label className="Form-label">Password:</Form.Label>
-                    <Form.Control as="input" type="password2" name="password2" value={this.state.password} onChange={this.handleChange} placeholder='Enter password' required />
+                    <Form.Control  type="password" name="password2" value={this.state.password} onChange={this.handleChange} placeholder='Enter password' required />
                 </Form.Group>
                 <button className="login-Btn">Sign Up</button>
             </Form>

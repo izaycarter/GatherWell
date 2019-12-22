@@ -49,16 +49,16 @@ class Login extends Component {
                     <h2 className="form-title d-flex justify-content-center">Login</h2>
                     <Form.Group className="d-flex" >
                         <Form.Label className="Form-label">Username:</Form.Label>
-                        <Form.Control as="input" type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder='Enter username' required />
+                        <Form.Control type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder='Enter username' required />
                     </Form.Group>
                     <Form.Group className="d-flex" >
                         <Form.Label className="Form-label">Email:</Form.Label>
-                        <Form.Control as="input" type="email" name="email" value={this.state.email} onChange={this.handleChange} placeholder='Enter email' required />
+                        <Form.Control type="email" name="email" value={this.state.email} onChange={this.handleChange} placeholder='Enter email' required />
                     </Form.Group>
 
                     <Form.Group className="d-flex" >
                         <Form.Label className="Form-label">Password:</Form.Label>
-                        <Form.Control as="input" type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder='Enter password' required />
+                        <Form.Control type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder='Enter password' required />
                     </Form.Group>
                     <Form.Group className="d-flex" >
                         <small>Don't have an acount? <a  href="/signup/"><span className="login-Btn SignUp-btn">Click here to Sign up.</span></a></small>
