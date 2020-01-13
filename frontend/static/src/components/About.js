@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fab, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
-import Geocode from "react-geocode";
-import {Card, ListGroup , ListGroupItem} from "react-bootstrap";
+import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+
+import {Card} from "react-bootstrap";
 
 import "../Css/Profile.css";
 import "../Css/About.css";
