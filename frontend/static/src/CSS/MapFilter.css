@@ -1,19 +1,22 @@
 
 .filter-labels{
     font-size: 26px;
-    color: #FF8800;
+    color: #FFF;
+    
 
 }
 
 .filters{
     flex-direction: column;
+    
 }
 
 .filters-div{
     width:100%;
     padding-top: 2rem;
     padding-left: 2rem;
-    padding-right: 2rem;    
+    padding-right: 2rem;
+    background-color: #233E4C;    
 }
 
 @media(max-width: 991px){

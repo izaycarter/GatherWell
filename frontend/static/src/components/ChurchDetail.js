@@ -51,7 +51,7 @@ class ChurchDetail extends Component {
                 <Card className="events" text="white">
                     <Card.Header className="event_title_date">{thisEvent.title}</Card.Header>
                     <Card.Title className="event_address">location: {thisEvent.address}</Card.Title>
-                    <Card.Body>{thisEvent.description}</Card.Body>
+                    <Card.Body className="event_description">{thisEvent.description}</Card.Body>
                 </Card>
             </li>
         ));

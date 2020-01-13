@@ -71,7 +71,6 @@ class Header extends Component{
                           <Nav.Link className="" href="/">Explore</Nav.Link>
                           <Nav.Link className="" href="/about/">About</Nav.Link>
                           <Nav.Link className="" href="/login/">Church Login</Nav.Link>
-                          <Nav.Link className="" href="/profile/create/">Submit Church</Nav.Link>
                         </Nav>
                     )
                     }

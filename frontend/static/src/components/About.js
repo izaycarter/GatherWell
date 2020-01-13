@@ -26,13 +26,13 @@ class About extends Component{
                       <Card.Text className="about-text">
                         <ul>
                             <li>
-                                <span className="profile_topic_section" >Explore</span> through the churches on the map. Click an icon to see the church details
+                                <span className="profile_topic_section" >Explore</span> through the churches on the map.
                             </li>
                             <li>
-                                <span className="profile_topic_section" >Click</span> an icon to see the church details
+                                <span className="profile_topic_section" >Click</span> an icon on the map to see the church details.
                             </li>
                             <li>
-                                <span className="profile_topic_section" >Connect</span> to new events by subscribing to a church via text
+                                <span className="profile_topic_section" >Connect</span> to new events by subscribing to a church via text.
                             </li>
                         </ul>
                       </Card.Text>
